@@ -1,0 +1,468 @@
+﻿
+@{
+    ViewBag.Title = "Rastreo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .page-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+        text-align: left;
+        padding: 5px 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+
+        .pcoded .pcoded-navbar .pcoded-item > li.active > a > span > i {
+            color: #fff !important;
+        }
+
+    .pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon {
+        font-size: 14px;
+        padding: 4px;
+        margin-right: 10px;
+        color: black;
+        border-radius: 4px;
+        width: 30px;
+        display: inline-block;
+        height: 30px;
+        text-align: center;
+        position: relative;
+    }
+
+    .progreso img {
+        width: 25%;
+        margin: 7% auto;
+        position: relative;
+    }
+
+    ul.custom-list {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+        ul.custom-list li {
+            display: inline-block;
+            width: 400px;
+        }
+
+    .progreso .vertical-line {
+        position: absolute;
+        width: 6px;
+        background-color: #ccc;
+        height: 83%;
+        top: 122px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .vertical-line::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        background-color: #3498db;
+        z-index: -1;
+    }
+
+    .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 9px;
+    }
+
+        .progress-step img {
+            max-width: 40px;
+            cursor: pointer;
+        }
+
+        .progress-step i {
+            margin-top: -9px;
+        }
+
+        .progress-step p {
+            margin-top: 0px;
+        }
+
+    ul li .progres-icon {
+        font-size: 150%;
+        background: #ccc;
+        color: #fff;
+        border-radius: 50%;
+        padding: 3px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .contenedor-progress {
+        padding-top: 0px !important;
+    }
+
+    .progress-step p {
+        margin-top: 5px;
+        background-color: #f9f9f9; /* Cambia el color de fondo */
+        padding: 5px 10px; /* Añade espacio alrededor del contenido del párrafo */
+        border-radius: 5px; /* Agrega bordes redondeados */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+    }
+
+    /* ul li:nth-child(1) .fa,
+    ul li:nth-child(2) .fa {
+        background: #60aa97;
+    }*/
+
+    ul li:nth-child(1) .fa {
+        background: #148e14;
+    }
+
+    .step1 {
+        background-color: #b0cc6a !important;
+        color: white;
+    }
+
+    .step2 {
+        background-color: #b0cc6a !important;
+        color: white;
+    }
+
+    .step3 {
+        background-color: #148e14 !important;
+        color: white;
+    }
+
+    .parallax {
+        background-image: url('/assets/img/licores_bg.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: 271px;
+        height: 33vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .parallax-content {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+    }
+
+
+
+    .progress-step .hover-info {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+        left: -18%;
+        top: 48%;
+        transform: translateY(-50%);
+        background: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 200px;
+    }
+
+    .progress-step:hover .progres-icon,
+    .progress-step:hover .hover-info {
+        opacity: 1;
+    }
+</style>
+<style>
+    .bor10 {
+        border: 1px solid #e6e6e6;
+        box-shadow: 0 1px 20px 0 rgb(69 90 100 / 23%);
+    }
+</style>
+
+<div class="top-content">
+    <br /><br /><br /><br />
+    <div class=" bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm" style="border-top: 1px solid #e6e6e6; border-radius: 5px; background: linear-gradient(to right, #79a4b8, #b0cc69); color: #e6e6e6 ">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 m-lr-auto m-b-20 text-center">
+                <h1 style="font-size: 22px; padding-bottom: 0px;">Numero de pedido: <strong> @ViewBag.Venta.Folio.FolioCompuesto</strong> </h1>
+            </div>
+            <div class="col-lg-5 text-center">
+            </div>
+            <div class="col-sm-2 col-lg-2 text-center">
+                <a href="/Store" class="flex-c-m cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" onclick="javascript: window.print();">
+                    <i class="fa fa-print" aria-hidden="true"></i>  &nbsp;&nbsp;  Imprimir
+                </a>
+            </div>
+            <div class="col-lg-5 text-center">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="bor10 col-sm-5" style="border-top: 1px solid #e6e6e6; border-radius: 5px; background: linear-gradient(to right, #f7f7f7, #f5f5f5); ">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12 m-lr-auto m-b-50">
+                        <br />
+                        <h1 style="font-size: 22px; color: #403f3f;" class="text-center"><strong> Resumen de compra </strong>  </h1>
+                        <br />
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #e9ecef; padding: 20px;">
+
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Subtotal: </h1>
+                            </div>
+
+                            <div class="size-209" style="text-align:right;">
+                                <span class="mtext-110 cl2 text-right" id="SubTotal_">
+                                    @ViewBag.Venta.TotalText
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #ffffff; padding: 20px;">
+
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Envio: </h1>
+                            </div>
+
+                            <div class="size-209 p-r-18 p-r-0-sm w-full-ssm" style="text-align:right;">
+                                <p class="mtext-110 cl2" id="TotalEnvio_">
+                                    $0.00
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex-w p-t-27 p-b-33" style="background-color: #e9ecef; padding: 20px;">
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Total: </h1>
+                            </div>
+
+                            <div class="size-209 p-t-1" style="text-align:right;">
+                                <span class="mtext-110 cl2" id="Total_">
+                                    @ViewBag.Venta.TotalText
+                                </span>
+                            </div>
+                        </div>
+
+                        <br />
+                        <h5 class="mtext-109 cl2 p-b-5 text-center">Entrega a domicilio</h5>
+                        <div class="flex-w bor12 p-t-15 p-b-30">
+                            <div class=" p-r-18 p-r-0-sm w-full-ssm">
+                                <strong><label style="font-size: 16px; color: #222222;">Información del cliente</label></strong>
+                                <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Venta.Persona.Nombre @ViewBag.Venta.Persona.ApellidoPaterno @ViewBag.Venta.Persona.ApellidoMaterno</p>
+                                <p class="stext-111  p-t-2"><strong>Correo electrónico: </strong> @ViewBag.Venta.Email.email </p>
+                                <p class="stext-111  p-t-2">
+                                    <strong>Telefono: </strong>
+                                    @{
+                                        if (ViewBag.Venta.Telefono != null)
+                                        {
+                                            <span>@ViewBag.Venta.Telefono.telefono </span> <span>-</span>
+                                            <span>@ViewBag.Venta.Telefono.CatTipoTelefono.Nombre</span>
+                                        }
+                                    }
+                                </p>
+                                <hr />
+                                <strong><label style="font-size: 16px; color: #222222;">Dirección </label></strong>
+                                <p class="stext-111  p-t-2">
+                                    @ViewBag.Venta.CatColonias.CatCp.CatPoblaciones.CatEstados.Estado,
+                                    @ViewBag.Venta.CatColonias.CatCp.CatPoblaciones.Poblacion,
+                                    @ViewBag.Venta.CatColonias.Colonia,
+                                    @ViewBag.Venta.CatColonias.CatCp.CP,
+                                    @ViewBag.Venta.PersonaDireccion.Calle,
+                                    @ViewBag.Venta.PersonaDireccion.NumExterior,
+                                    @ViewBag.Venta.PersonaDireccion.NumInterior
+                                    <br />
+                                    <strong> Entre calles:</strong>
+                                    @ViewBag.Venta.PersonaDireccion.EntreCalles
+                                    <br />
+                                    <strong> Referencias: </strong>
+                                    @ViewBag.Venta.PersonaDireccion.Referencias,
+                                </p>
+                                @if (ViewBag.Venta.PersonaDireccion.RecibirPedido > 0)
+                                {
+                                    <p class="stext-111  p-t-2"><strong>Persona quien recibirá el pedido: </strong> </p>
+                                    <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Venta.PersonaDireccion.RecibirNombre @ViewBag.Venta.PersonaDireccion.RecibirApellidos </p>
+                                    <p class="stext-111  p-t-2">
+                                        <strong>Telefono: </strong> @ViewBag.Venta.PersonaDireccion.RecibirTelefono -
+                                        @if (ViewBag.Venta.PersonaDireccion.RecibirTipoTelefono == 0)
+                                        {
+                                            <strong>FIJO </strong>
+                                        }
+                                        else
+                                        {
+                                            <strong>CELULAR </strong>
+                                        }
+                                    </p>
+                                }
+                                <hr />
+                                <p class="stext-111  p-t-2">
+                                    *La fecha de entrega puede cambiar por la disponibilidad del producto, tu ubicación o la forma de pago.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class=" col-sm-1">
+            </div>
+
+            <div class=" col-sm-6">
+                <div class="row">
+                   
+                    <div class="col-sm-12 col-lg-12">
+                        <div class=" bor10 card">
+                            <div class="card-header text-center">
+                                <h5>Estatus de la compra </h5>
+                            </div>
+                            <div class="card-block contenedor-progress">
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 progreso">
+                                        <div class="row">
+
+                                            <div class="col card mb-0 text-center">
+                                                <p><b># Numero de orden</b></p>
+                                                @ViewBag.Venta.Folio.FolioCompuesto
+                                            </div>
+                                            <div class="col card mb-0 text-center">
+                                                <p><b>Referencia</b></p>
+                                                @ViewBag.Venta.Referencia
+                                            </div>
+                                            <div class="col card mb-0 text-center">
+                                                <p><b>Metodo de pago</b></p>
+                                                @ViewBag.Venta.CatMetodoPago.Nombre
+                                            </div>
+                                            <ul class="custom-list">
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/screen-cart.png" alt="Paso 1">
+                                                        <i class="progres-icon fa fa-refresh"></i>
+                                                        <p class="step1">PENDIENTE DE PAGO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PENDIENTE DE PAGO</h5>
+                                                            <p>11/10/2023  4:31 AM</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/icone-cercle-rempli-gris.png" />
+                                                        <i class="progres-icon fa fa-refresh"></i>
+                                                        <p class="step4">PAGO CONFIRMADO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PAGO CONFIRMADO</h5>
+                                                            <p>A la espera</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/icone-cercle-rempli-gris.png" />
+                                                        <i class="progres-icon fa fa-refresh"></i>
+                                                        <p class="step4">PEDIDO CONFIRMADO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PEDIDO CONFIRMADO</h5>
+                                                            <p>A la espera</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/icone-cercle-rempli-gris.png" />
+                                                        <i class="progres-icon fa fa-refresh"></i>
+                                                        <p class="step4">PREPARANDO TU PEDIDO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PREPARANDO TU PEDIDO </h5>
+                                                            <p>A la espera</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/icone-cercle-rempli-gris.png" />
+                                                        <i class="progres-icon fa fa-clock-o"></i>
+                                                        <p class="step4">PEDIDO EN CAMINO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PEDIDO EN CAMINO</h5>
+                                                            <p>A la espera</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="progress-step">
+                                                        <img src="~/assets/icon/icone-cercle-rempli-gris.png" />
+                                                        <i class="progres-icon fa fa-clock-o"></i>
+                                                        <p class="step4">PEDIDO ENTREGADO</p>
+                                                        <div class="hover-info">
+                                                            <h5>PEDIDO ENTREGADO</h5>
+                                                            <p>A la espera</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                            <div class="vertical-line"></div>
+                                        </div>
+                                        <br /><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <br />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="bor10 col-sm-12" style="border-top: 1px solid #e6e6e6; border-radius: 5px; ">
+                        <p class="stext-111  p-t-2">
+                            *La fecha de entrega puede cambiar por la disponibilidad del producto, tu ubicación o la forma de pago.
+                        </p>
+                        <br />
+                        <table>
+                            @{
+                                foreach (var Arti in ViewBag.Articulos)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="how-itemcart1">
+                                                <img src="https://@Arti.ArticuloImagen.ImagenURL" alt="IMG">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <strong>@Arti.ArticuloDetalle.Nombre</strong>
+                                            </p>
+                                            <label style="margin-bottom: 0rem; font-size: 12px; text-transform: lowercase; ">Categoria: <strong style="">@Arti.CatClasificacion.Nombre</strong></label>
+                                            @*Cantidad : <strong>@Arti.CarroElectronico.Item</strong>*@
+                                            @*<strong><label id="Total_@Arti.Articulo.Id" style="text-align: right;">Total: @Arti.PrecioTotalText</label></strong>*@
+                                            <br />
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,500 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>E-Commerce </title>
+    <link rel="icon" href="~/assets/images/icoCSB.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- Style.css -->
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        body[themebg-pattern="theme1"] {
+            background-color: #b1ce69;
+        }
+
+        /*   Typography    */
+        .alert, button.close {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /*     Alert    */
+        .alert {
+            border: 0px;
+            position: relative;
+            padding: .95rem 1.25rem;
+            border-radius: 1px;
+            color: inherit;
+            background-color: #ffffff;
+            -webkit-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            -moz-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        }
+
+            .alert [data-notify="icon"] {
+                display: block;
+            }
+
+                .alert [data-notify="icon"]::before {
+                    line-height: 35px;
+                    font-size: 22px;
+                    display: block;
+                    left: 15px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 30px;
+                    text-align: center;
+                    color: #fff;
+                }
+
+            .alert [data-notify="title"] {
+                display: block;
+                color: #2b2b2b;
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .alert [data-notify="message"] {
+                font-size: 13px;
+                color: #908e8e;
+            }
+
+            .alert .close {
+                background: rgba(255, 255, 255, 0.8);
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                top: 12px !important;
+                border-radius: 50%;
+            }
+
+        /*    Alert States    */
+        .alert-default {
+            border-left: 4px solid #1a2035;
+        }
+
+            .alert-default [data-notify="icon"]:before {
+                background: #1a2035;
+            }
+
+        .alert-primary {
+            border-left: 4px solid #1572E8;
+        }
+
+            .alert-primary [data-notify="icon"]:before {
+                background: #1572E8;
+            }
+
+        .alert-secondary {
+            border-left: 4px solid #6861CE;
+        }
+
+            .alert-secondary [data-notify="icon"]:before {
+                background: #6861CE;
+            }
+
+        .alert-info {
+            border-left: 4px solid #48ABF7;
+        }
+
+            .alert-info [data-notify="icon"]:before {
+                background: #48ABF7;
+            }
+
+        .alert-success {
+            border-left: 4px solid #31CE36;
+        }
+
+            .alert-success [data-notify="icon"]:before {
+                background: #31CE36;
+            }
+
+        .alert-warning {
+            border-left: 4px solid #FFAD46;
+        }
+
+            .alert-warning [data-notify="icon"]:before {
+                background: #FFAD46;
+            }
+
+        .alert-danger {
+            border-left: 4px solid #F25961;
+        }
+
+            .alert-danger [data-notify="icon"]:before {
+                background: #F25961;
+                z-index: 9999;
+            }
+
+        [data-notify] {
+            z-index: 999999999991 !important;
+        }
+
+        .pcoded .pcoded-header[header-theme="theme1"] {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+            color: #fff !important;
+        }
+
+        .pcoded[fream-type="theme1"] .page-header:before, .pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+            background: linear-gradient(to right, #185a9deb, #9c27b0c2);
+        }
+
+        .bg-c-purple {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .card .card-header h5:after {
+            content: "";
+            background-color: #9a28b0;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 20px;
+        }
+
+        .text-c-purple {
+            color: #9c28b0;
+        }
+
+        .pcoded .pcoded-navbar .pcoded-navigation-label[menu-title-theme="theme1"] {
+            color: #5d40a7;
+        }
+
+
+
+        .md-tabs .nav-item.open .nav-link, .md-tabs .nav-item.open .nav-link:focus, .md-tabs .nav-item.open .nav-link:hover, .md-tabs .nav-link.active, .md-tabs .nav-link.active:focus, .md-tabs .nav-link.active:hover {
+            color: #5d40a7;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .nav-tabs .slide {
+            background: #9a27af;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            -webkit-transition: left 0.3s ease-out;
+            transition: left 0.3s ease-out;
+            bottom: 0;
+        }
+
+        .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
+            background-color: #448aff;
+            background: linear-gradient(310deg,#b0ce68,#78a4b3);
+            border-color: #d7e2f5;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+            border-radius: 8px;
+        }
+
+            .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
+                background: linear-gradient(310deg,#2152ff,#21d4fd);
+                border-radius: 5px;
+            }
+
+        .btn-success {
+            background: linear-gradient(310deg,#17ad37,#98ec2d);
+            background-color: #11c15b;
+            border-color: #a8ffcd;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-info {
+            background: linear-gradient(310deg,#007989,#00bcd4);
+            /* background-color: #00bcd4; */
+            border-color: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-danger {
+            background: linear-gradient(310deg,#ea0606,#ff667c);
+            border-color: #ff5252;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-warning {
+            background: linear-gradient(310deg,#f53939,#fbcf33);
+            border-color: #ffe100;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(310deg,#404040,#868e96);
+            color: #fff;
+            background-color: #868e96;
+            border-color: #868e96;
+            border-radius: 5px;
+            border-radius: 8px;
+        }
+
+        .h3, h3 {
+            font-size: 1.75rem;
+            color: #566a7f;
+            font-size: 1.375rem;
+            line-height: 1.2;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.4375rem 0.875rem;
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.53;
+            color: #697a8d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d9dee3;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.375rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .login-block .auth-box {
+            margin: 20px auto 0 auto;
+            max-width: 400px;
+        }
+
+
+        @@media (max-width: 991px) {
+            .imglogo {
+                width: 18%;
+                margin-left: 39%;
+            }
+
+            .imglogo2 {
+                width: 25%;
+            }
+        }
+    </style>
+</head>
+
+<body themebg-pattern="theme1">
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <section class="login-block">
+        <!-- Container-fluid starts -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+
+                    <form class="" id="FormularioNuevoUsuario">
+                        <div class="text-center">
+                            <img src="~/images/icons/CSB_Mexico.png" href="@Url.Action("Index", "Store")" alt="logo.png" width="10%" class="imglogo2">
+                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Escribe tu número de seguimiento</h3>
+                                    </div>
+                                </div>
+                                <div class="row m-t-20">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="largeInput">* Folio </label>
+                                            <input type="text" class="form-control input-mayusculas" id="Folio" placeholder="" autocomplete="off" onchange="ValidaInput('Folio')">
+                                            <label id="MensajeTextNombre" class="text-danger" style="display: none;"> </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" >Buscar pedido </button>
+                                    </div>
+                                </div>
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-9">
+                                        @*<p class="text-inverse text-left m-b-0">Thank you.</p>*@
+                                        <p class="text-inverse text-left"><a href="@Url.Action("Index", "Store")"><b>Volver a Tienda </b></a></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img class="imglogo" src="~/images/icons/CSB_Mexico.png" alt="small-logo.png" width="100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end of form -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    <!-- Warning Section Starts -->
+    <!-- Required Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/script.js "></script>
+    <script>
+        $(document).ready(function () {
+            $("#FormularioNuevoUsuario").on("submit", function (event) {
+                // Prevenir el envío del formulario por defecto
+                event.preventDefault();
+
+                if (isValidFomr()) {
+                    var obj = {};
+
+                    obj['UrlVaible'] = $('#Folio').val();
+
+                    var jsonObject = {
+                        "URL": obj
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("URL_Cifrado", "URLS")",
+                        async: false,
+                        data: JSON.stringify(jsonObject),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            window.location.href = '@Url.Action("Rastreo", "RastreaPedidos")?F=' + result.Url;
+                        },
+                        error: function () {
+
+                        }
+                    });
+
+                }
+            });
+
+            $(".input-mayusculas").on("input", function () {
+                // Obtener el valor actual del input
+                var textoActual = $(this).val();
+
+                // Convertir el texto a mayúsculas
+                var textoMayusculas = textoActual.toUpperCase();
+
+                // Verificar si el valor ha cambiado antes de actualizar el input
+                // Esto evita que se cree un ciclo infinito en algunos navegadores
+                if (textoActual !== textoMayusculas) {
+                    // Actualizar el valor del input con el texto en mayúsculas y sin números
+                    $(this).val(textoMayusculas);
+                }
+            });
+        });
+
+
+        function isValidFomr() {
+            var result = false;
+
+            $('#Folio').css("border", "1px solid #d9dee3");
+
+            if ($('#Folio').val().length == 0) {
+                $('#Folio').css("border", "2px solid #ff0049");
+                $('#MensajeTextFolio').html("Este dato es obligatorio.");
+                $("#MensajeTextFolio").show();
+            }
+
+            if ($('#Folio').val().length > 0) {
+                result = true;
+            }
+
+            return result;
+        }
+
+        function ValidaInput(name) {
+            if ($('#' + name).val().length > 0) {
+                $('#' + name).css("border", "1px solid rgb(222 222 222)");
+            } else {
+                $('#' + name).css("border", "2px solid #ff0049");
+            }
+
+        }
+
+       
+    </script>
+</body>
+
+</html>

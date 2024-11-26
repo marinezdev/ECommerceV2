@@ -1,0 +1,310 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="assets/css/templatemo.css">
+
+<style>
+        .ov-btn-grow-skew {
+            background: #fff; /* color de fondo */
+            color: black !important; /* color de fuente */
+            border: 2px solid var(--c-principal); /* tamaño y color de borde */
+            padding: 6px 20px;
+            border-radius: 3px; /* redondear bordes */
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .ov-btn-grow-skew:hover {
+            color: whitesmoke !important; /* color de fuente hover */
+        }
+
+        .ov-btn-grow-skew::after {
+            content: "";
+            background: var(--c-principal); /* color de fondo hover */
+            position: absolute;
+            z-index: -1;
+            padding: 16px 20px;
+            display: block;
+            left: -20%;
+            right: -20%;
+            top: 0;
+            bottom: 0;
+            transform: skewX(-45deg) scale(0, 1);
+            transition: all 0.3s ease;
+        }
+
+        .ov-btn-grow-skew:hover::after {
+            transition: all 0.3s ease-out;
+            transform: skewX(-45deg) scale(1, 1);
+        }
+        .puntuacion {
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .puntuacion:hover {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        /* styles.css */
+        .custom-card {
+            background-color: #f8f9fa; /* Color de fondo diferente */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombreado */
+        }
+
+        .zoom-effect {
+            transition: transform 0.2s ease;
+        }
+
+        .zoom-effect:hover {
+            transform: scale(1.05);
+        }
+
+        .img-cover {
+            object-fit: contain;
+            height: 250px;
+        }
+
+        .card-body {
+            height: 200px; /* Tamaño fijo para el cuerpo de la tarjeta */
+            overflow-y: auto; /* Mostrar barras de desplazamiento vertical cuando sea necesario */
+        }
+
+        .btn-visualizar {
+            margin-top: 10px; /* Espacio arriba del botón */
+            margin-bottom: 20px; /* Espacio abajo del botón */
+        }
+
+
+    /*Mediaquery CARRUCEL*/
+    @@media (max-width: 991px) {
+        .estetic {
+            display: none;
+        }
+
+        .img-fluid {
+            width: 280px;
+        }
+
+        .h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px !important;
+            font-weight: 200 !important;
+        }
+
+        .h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px !important;
+            font-weight: 300;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px !important;
+            font-weight: 300 !important;
+        }
+
+        #template-mo-zay-hero-carousel .carousel-indicators li {
+            margin-top: -1px;
+            background-color: #59ab6e;
+        }
+
+        .align-self-center {
+            -ms-flex-item-align: center !important;
+            align-self: center !important;
+            text-align: start;
+        }
+
+        .imgcarrucel {
+            -ms-flex: 0 0 66.666667%;
+            flex: 0 0 34.666667%;
+            max-width: 66.666667%;
+        }
+        /*Mediaquery imgen stars*/
+        .imagen {
+            height: 131px !important;
+        }
+
+        .ulimg {
+            font-size: 11px !important;
+        }
+    }
+
+    @@media (max-width: 720px) {
+        #template-mo-zay-hero-carousel {
+            background-size: auto;
+        }
+    }
+</style>
+<p class="estetic">
+    <br />
+    <br />
+    <br />
+</p>
+@*CARRUCEL*@
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (var i = 0; i < ViewBag.Promos.Count; i++)
+        {
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+        }
+    </ol>
+
+    <div class="carousel-inner">
+        @foreach (var item in ViewBag.Promos)
+        {
+            <div class="carousel-item @(item == ViewBag.Promos[0] ? "active" : "")">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid smaller-image mx-auto d-block" src="@item.URLImg" alt="" style="width: 30%">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 style="color: var(--c-principal); text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;" class="h1"><b>@item.Titulo</b></h1>
+                                <h3 style="color: white; text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black; " class="h2">@item.Subtitulo</h3>
+                                <p style=" color: white; text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;">
+                                    <b>@item.Descripcion</b>
+                                    <a rel="sponsored" class="text-success" href="@item.Link" target="_blank">Comprar</a> ahora.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fa fa-angle-left f-60"></i>
+    </a>
+
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fa fa-angle-right"></i>
+    </a>
+</div>
+
+
+@*Clasificacion*@
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Productos por Clasificación</h1>
+            <p>
+                Selecciona una clasificación para ver los productos disponibles en la tienda.
+            </p>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        @{
+            if (ViewBag.Clasificacion != null)
+            {
+                if (ViewBag.Clasificacion.Count > 0)
+                {
+                    foreach (var item in ViewBag.Clasificacion)
+                    {
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 p-5 mt-3">
+                            <div class="card custom-card" style="width: 18rem;">
+                                @*http://*@
+                                <img src="@item.Imagen" class="card-img-top zoom-effect img-fluids img-cover">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Nombre</h5>
+                                    <p class="card-text">Resumen general de la categoría, mención de algunas marcas o posibles promociones, incremento del texto.</p>
+                                    <!-- Agrega aquí más contenido si es necesario -->
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="@Url.Action("Index", "Store")" class="ov-btn-grow-skew btn-visualizar" style="cursor:pointer">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <li>
+                        <div class="text-center">
+                            <h1 style="font-size: 40px; color: #afce68;">¡Uuups!</h1>
+                            <h1 style="padding: 3px; font-size: 100px; color: #afce68;"><strong><i class="fa fa-search-minus" aria-hidden="true"></i></strong> </h1>
+                            <p style="font-size: 15px;"> Sin datos </p>
+                        </div>
+                    </li>
+
+                }
+
+            }
+            else
+            {
+                <li>
+                    <div>
+                        <h1 style="font-size: 40px; color: #afce68;">¡Uuups!</h1>
+                        <p>No hay nada por aqui.</p>
+                    </div>
+                </li>
+
+            }
+        }
+
+    </div>
+</section>
+
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">
+                    Productos destacados
+                </h1>
+                <p>
+                    ¡Descubre nuestra selección exclusiva de productos destacados! Te presentamos los artículos más populares y solicitados por nuestros clientes.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                if (ViewBag.ClasificacionA != null)
+                {
+                    foreach (var item in ViewBag.ClasificacionA)
+                    {
+                        <div class="col col-xs-4 col-md-4 mb-4">
+                            <div class="card h-100 puntuacion">
+                                <a href="#">
+                                    <img src="@item.Imagen" class="card-img-top img-fluid imagen" style="height: 400px; object-fit: contain !important;">
+                                </a>
+                                <div class="card-body" style="background-color: #f8f9fa; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                    <ul class="list-unstyled d-flex justify-content-between ulimg">
+                                        <li>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            @*<i class="text-muted fa fa-star"></i>*@
+                                        </li>
+                                        <li class="text-muted text-right">$2240.00</li>
+                                    </ul>
+                                    <a href="#" class="h2 text-decoration-none text-dark">@item.Nombre</a>
+                                    <p class="card-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                    </p>
+                                    <p class="text-muted">Reviews (24)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</section>
+<!-- End Featured Product -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/templatemo.js"></script>

@@ -1,0 +1,1178 @@
+﻿
+@{
+    ViewBag.Title = "ArticuloDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="~/vendor/imagezoom/imagezoom.js"></script>
+<link href="~/assets/galeria/css/style.css" rel="stylesheet" />
+<style>
+    textarea.input {
+        padding: 15px;
+        min-height: 150px;
+    }
+
+    .primary-btn {
+        display: inline-block;
+        padding: 10px 30px;
+        background-color: #afce68;
+        border: none;
+        border-radius: 5px;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: center;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product-details .add-to-cart .add-to-cart-btn {
+        position: relative;
+        border: 2px solid transparent;
+        height: 40px;
+        padding: 0 30px;
+        background-color: #afce68;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 40px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product-details .product-price {
+        display: inline-block;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: #afce68;
+    }
+
+    .product-details .product-rating > i.fa-star {
+        color: #afce68;
+    }
+
+    .product-details .add-to-cart .add-to-cart-btn:hover {
+        background-color: #FFF;
+        color: #afce68;
+        border-color: #afce68;
+        padding: 0px 30px 0px 50px;
+    }
+
+
+    .product-details .add-to-cart .add-to-cart-btn > i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        color: #afce68;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .hov-btn3:hover {
+        border-color: #afce68 !important;
+        background-color: #afce68 !important;
+        color: #fff;
+    }
+
+    .rating-avg .rating-stars > i.fa-star, .rating .rating-stars > i.fa-star {
+        color: #afce68;
+    }
+
+    .rating .rating-progress > div {
+        background-color: #afce68;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 5px;
+    }
+
+    #product-tab .tab-nav li.active a {
+        color: #afce68;
+    }
+
+    #product-tab .tab-nav li a:after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #afce68;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.4375rem 0.875rem;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.53;
+        color: #697a8d;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d9dee3;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .input {
+        height: 40px;
+        padding: 0px 15px;
+        border: 1px solid #E4E7ED;
+        background-color: #FFF;
+        width: 100%;
+        display: block;
+        width: 100%;
+        padding: 0.4375rem 0.875rem;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.53;
+        color: #697a8d;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d9dee3;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .review-form .input-rating .stars > input:checked label:before, .review-form .input-rating .stars > input:checked ~ label:before {
+        content: "\f005";
+        color: #afce68;
+    }
+
+    .review-form .input-rating .stars > label:hover:before, .review-form .input-rating .stars > label:hover ~ label:before {
+        color: #afce68;
+    }
+
+    .product-details .product-available {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-left: 30px;
+        color: #f8a93f;
+    }
+
+    .reviews .review-heading .review-rating > i.fa-star {
+        color: #afce68;
+    }
+    .reviews-pagination li.active {
+        background-color: #afce68;
+        border-color: #8ea55a;
+        color: #FFF;
+        cursor: default;
+    }
+
+    .tab01 .nav-link.active {
+        color: #15436d;
+        border-color: #ffffff;
+        font-family: ' Roboto', sans-serif;
+        font-weight: 600;
+        color: #5b5959;
+        font-size: 26px;
+        line-height: 0.0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .product-rating > i.fa-star {
+        color: #b1cc69;
+    }
+
+    .cl3 {
+        color: #8ea550;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    /*Mediaquery*/
+    @@media (max-width: 991px) {
+        .estetic {
+            display: none;
+        }
+        .estetic1 {
+            font-size: 30px !important;
+        }
+        .estetic2 {
+            font-size: 80px !important;
+        }
+        .product-name {
+            font-size: 15px !important;
+        }
+        .product-price {
+            font-size: 20px !important;
+        }
+
+        .product-details p {
+            font-size: 14px !important;
+        }
+        h4 {
+            font-size: 16px;
+        }
+        .rating-avg {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+        .review-form {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px !important;
+        }
+    }
+
+
+
+</style>
+
+<p class="estetic">
+    <br />
+    <br />
+    <br />
+</p>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="#!" class="stext-109 ">
+            Inicio
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            Tienda
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.CatCategoriaProducto.Nombre
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.CatSubcategoria.Nombre
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.CatClasificacion.Nombre
+        </a>
+    </div>
+</div>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-6 col-lg-7 p-b-30">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    @{
+                        if (ViewBag.Imgs.Count > 6)
+                        {
+                            <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel" data-interval="3000">
+                                <div class="carousel-inner" role="listbox">
+                                    @{
+                                        int acti = 0;
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            if (acti == 0)
+                                            {
+                                                <div class="carousel-item active"> <img class="d-block w-100" src="https://@cat.ImagenURL" data-imagezoom="true"> </div>
+
+                                                acti = acti + 1;
+                                            }
+                                            else
+                                            {
+                                                <div class="carousel-item"> <img class="d-block w-100" src="https://@cat.ImagenURL" data-imagezoom="true"> </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <ol class="carousel-indicators">
+                                    @{
+                                        int acti2 = 0;
+                                        int cont = 0;
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            if (acti2 == 0)
+                                            {
+                                                <li data-target="#carousel-example-1" data-slide-to="@cont" class="active">
+                                                    <img class="d-block w-100 img-fluid" src="https://@cat.ImagenURL" alt="" />
+                                                </li>
+                                                acti2 = acti2 + 1;
+                                            }
+                                            else
+                                            {
+                                                <li data-target="#carousel-example-1" data-slide-to="@cont">
+                                                    <img class="d-block w-100 img-fluid" src="https://@cat.ImagenURL" alt="" />
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ol>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="wrap-slick3 flex-sb flex-w">
+                                <div class="wrap-slick3-dots"></div>
+                                <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                                <div class="slick3 gallery-lb">
+                                    @{
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            <div class="item-slick3" data-thumb="https://@cat.ImagenURL">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="https://@cat.ImagenURL" alt="IMG-PRODUCT" data-imagezoom="true">
+
+                                                    <a class="flex-c-m size-108  fs-16 cl10 hov-btn3 trans-04" style="background-color: #696969; color:#ffffff" href="http://@cat.ImagenURL">
+                                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="product-details">
+                            <h2 class="product-name">@ViewBag.ArticuloConsulta.ArticuloDetalle.Nombre </h2>
+                            <h2 class="product-name">SKU: @ViewBag.ArticuloConsulta.ArticuloDetalle.SKU </h2>
+                            <div>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <a class="review-link" href="#">Agrega tu evaluación</a>
+                            </div>
+                            <div>
+                                <h3 class="product-price"> @ViewBag.ArticuloConsulta.PrecioPublicoText</h3>
+                                <span class="product-available">Articulo disponible </span>
+                                @*<p class="review-link">Tipo publicado : @ViewBag.Tiempo </p>*@
+                                <br />
+                            </div>
+                            <br />
+                            <h2 class="product-name">Descripción: </h2>
+                            <p>
+                                @ViewBag.ArticuloConsulta.ArticuloDetalle.Descripcion
+                            </p>
+                            <br />
+                            <hr />
+
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    Cantidad
+                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" id="NumeroCantidad" value="1" style="color:#808080; font-size: 15px;">
+
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="AgregarCarrito(@ViewBag.ArticuloConsulta.Articulo.Id)"><i class="fa fa-shopping-cart"></i> Agregar al carro</button>
+                            </div>
+
+                            <ul class="product-btns">
+                                <li><a href="#"><i class="fa fa-heart-o"></i> AÑADIR A LA LISTA DE DESEOS</a></li>
+                            </ul>
+
+                            <ul class="product-links">
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.CatCategoriaProducto.Nombre </a></li>
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.CatSubcategoria.Nombre</a></li>
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.CatClasificacion.Nombre</a></li>
+                            </ul>
+
+                            <ul class="product-links">
+                                <li>Compartir :</li>
+                                <li><a href="#!"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-envelope"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product tab -->
+            <div class="col-md-7">
+                <div class="container">
+                    <br />
+                    <h4 class="">
+                        <strong>CARACTERÍSTICAS PRINCIPALES</strong>
+                    </h4>
+                    <hr />
+                </div>
+
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        @{
+                            if (ViewBag.ArticuloAtributos != null)
+                            {
+                                foreach (var dbAtributos in ViewBag.ArticuloAtributos)
+                                {
+                                    <tr>
+                                        <th scope="row">@dbAtributos.CatAtributos.Atributo</th>
+                                        <td>@dbAtributos.Valor</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-md-5">
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Medios de pago</h5>
+                        <br />
+                        <h6 class="card-subtitle mb-2 text-muted">Tarjetas de crédito y débito</h6>
+                        <div class="col-sm-12 ">
+                            <img src="~/images/icons/icon-pay-02.png" />
+                            <img src="~/images/icons/icon-pay-03.png" />
+                            <br /><br />
+                            <img src="~/images/icons/spei_brand.png" width="10%" />
+                            <br /><br />
+                            <img src="~/images/icons/paypal-logo-4.png" width="15%" />
+                            <br /><br />
+
+                        </div>
+
+                        <h6 class="card-subtitle mb-2 text-muted">Efectivo</h6>
+                        <div class="col-sm-12 ">
+                            <img src="~/images/icons/oxxopay_brand.png" width="20%" />
+                            <br /><br />
+                        </div>
+                        <a href="#" class="card-link">Términos y condiciones</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab">Opiniones del producto </a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <div class="row">
+                            <!-- Reviews -->
+                            <div class="col-md-5">
+                                <div id="reviews">
+                                    <ul class="reviews text-center" >
+                                        @{
+                                            if (ViewBag.Comentarios != null)
+                                            {
+                                                if (ViewBag.Comentarios.Count > 0)
+                                                {
+                                                    foreach (var Comentario in ViewBag.Comentarios)
+                                                    {
+                                                        <li>
+                                                            <div class="review-heading">
+                                                                <h5 class="name">@Comentario.Nombre</h5>
+                                                                <p class="date">@Comentario.FechaRegistro</p>
+                                                                <div class="review-rating">
+                                                                    @{
+                                                                        for (int i = 1; i < 6; i++)
+                                                                        {
+                                                                            if (i <= @Comentario.Estrellas)
+                                                                            {
+                                                                                <i class="fa fa-star"></i>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <i class="fa fa-star-o empty"></i>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div class="review-body">
+                                                                <p>@Comentario.Comentario .</p>
+                                                            </div>
+                                                            <br />
+                                                        </li>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <li style="margin:0px; padding:0px;">
+                                                        <div class="text-center">
+                                                            <h1 class="estetic1" style="font-size: 40px; color: #afce68;">¡Uuups!</h1>
+                                                            <h1 class="estetic2" style="padding: 3px; font-size: 100px; color: #afce68;"><strong><i class="fa fa-search-minus" aria-hidden="true"></i></strong> </h1>
+                                                            <p style="font-size: 15px;"> En este momento no hay comentarios para este articulo. </p>
+                                                        </div>
+                                                    </li>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <div>
+                                                        <h1 style="font-size: 40px; color: #afce68;">¡Uuups!</h1>
+                                                        <p>sin comentario</p>
+                                                    </div>
+                                                </li>
+
+                                            }
+                                        }
+                                    </ul>
+                                    <ul class="reviews-pagination">
+                                        @{
+                                            if (@ViewBag.Paginador > 4)
+                                            {
+                                                int b = 0;
+                                                for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (b == 0)
+                                                    {
+                                                        <li class="active">@i</li>
+                                                        b = 1;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (i == 5)
+                                                        {
+                                                            <li><a onclick="Comentarios(@i)"><i class="fa fa-angle-right"></i></a></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a onclick="Comentarios(@i)">@i</a></li>
+                                                        }
+
+                                                    }
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                int b = 0;
+                                                for (int i = 1; i < @ViewBag.Paginador + 1; i++)
+                                                {
+                                                    if (b == 0)
+                                                    {
+                                                        <li class="active">@i</li>
+                                                        b = 1;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (i == 5)
+                                                        {
+                                                            <li><a onclick="Comentarios(@i)"><i class="fa fa-angle-right"></i></a></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a onclick="Comentarios(@i)">@i</a></li>
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Reviews -->
+                            <!-- Review Form -->
+                            <div class="col-md-4">
+                                <div id="review-form">
+                                    <div class="review-form">
+                                        @*<input class="input" type="text" id="R_Nombre" placeholder="Tu Nombre">
+                                        <input class="input" type="email" id="R_Email" placeholder="Tu Email">*@
+                                        <textarea rows="10" class="input" id="R_Resena" placeholder="Tu Comentario "></textarea>
+                                        <div class="input-rating">
+                                            <span>
+                                                Calificación :
+                                            </span>
+                                            <div class="stars">
+                                                <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                                <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                                <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                                <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                                <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="primary-btn" onclick="RegitraComentario()">Registrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Review Form -->
+                            <!-- Rating -->
+                            <div class="col-md-3">
+                                <div id="rating">
+                                    <div class="rating-avg">
+                                        <span>5</span>
+                                        <div class="rating-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <ul class="rating">
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div style="width: 100%;"></div>
+                                            </div>
+                                            <span class="sum">5</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div style="width: 0%;"></div>
+                                            </div>
+                                            <span class="sum">4</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">3</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">2</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">1</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Rating -->
+                        </div>
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <br /><br /><br /><br />
+                <div class="bg6 flex-c-m flex-w" style=" background: linear-gradient(to right, #77a4b5, #b0cd68);">
+                    <span class="stext-107 cl6 p-lr-25">
+                        <label id="m_TipoCategoriaS"></label>
+                    </span>
+                    <span class="stext-107 cl6 p-lr-25">
+                    </span>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- Related Products -->
+<section class="sec-relate-product bg0">
+    <div class="container">
+        <div class="p-b-45">
+            <h2 style="font-family: ' Roboto', sans-serif; font-weight: 600; color: #5b5959; font-size: 26px; line-height: 1.2; text-align:center">
+                <strong>TAMBIÉN TE PUEDE INTERESAR.</strong>
+            </h2>
+        </div>
+
+        <div class="tab01">
+            <ul class="nav nav-tabs" role="tablist">
+                @{
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link active" data-toggle="tab" href="#grup_@ViewBag.Clasificacion.Id" role="tab">@ViewBag.Clasificacion.Nombre</a>
+                    </li>
+                }
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content p-t-50">
+                <!-- - -->
+                @Html.Raw(ViewBag.Articulos)
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+    <span class="stext-107 cl6 p-lr-25">
+
+    </span>
+
+    <span class="stext-107 cl6 p-lr-25">
+
+
+    </span>
+</div>
+
+
+<div class="sec-banner bg0">
+
+    <div class="bg6 flex-c-m flex-w size-301">
+        <span class="stext-107 cl6 p-lr-25">
+
+        </span>
+
+        <span class="stext-107 cl6 p-lr-25">
+
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/assets/galeria/js/slick.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<script>
+    function ConsultaArticulo(num) {
+        var obj = {};
+
+        obj['UrlVaible'] = num;
+
+        var jsonObject = {
+            "URL": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("URL_Cifrado", "URLS")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                window.location.href = '@Url.Action("ArticuloDetalle", "Store")?Arti=' + result.Url;
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function Comentarios(NumPaginas) {
+        var Articulo = new Object();
+        Articulo.Id = @ViewBag.ArticuloConsulta.Articulo.Id;
+
+        var ArticuloComentario = new Object();
+        ArticuloComentario.Articulo = Articulo;
+        ArticuloComentario.NumPaginas = NumPaginas;
+
+        $('#reviews').html('');
+        var Contenido = '';
+
+        $.ajax({
+            url: "@Url.Action("ArticuloComentario_Seleccionar_PorPagina", "ArticuloComentario")",
+            type: "POST",
+            data: JSON.stringify(ArticuloComentario),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+
+            },
+            success: function (response) {
+
+                for (var b = 0; b < response.length; b++) {
+                    Contenido += "<ul class='reviews'>"+
+                    "<li>" +
+                        "<div class='review-heading'>" +
+                            "<h5 class='name'>" + response[b].Nombre +"</h5>" +
+                        "<p class='date'>" + FormatoFecha(response[b].FechaRegistro) + "</p>" +
+                            "<div class='review-rating'>";
+
+                            for (var h = 0; h < 6; h++)
+                            {
+                                if (h <= response[b].Estrellas)
+                                {
+                                    Contenido += "<i class='fa fa-star'></i>";
+                                }
+                                else
+                                {
+                                   Contenido += " <i class='fa fa-star-o empty'></i>";
+                                }
+                            }
+
+
+                Contenido += "</div>" +
+                        "</div>" +
+                        "<div class='review-body'>" +
+                            "<p>" + response[b].Comentario +".</p>" +
+                        "</div>" +
+                        "<br />" +
+                    "</li></ul>" ;
+
+                }
+
+                Contenido += "<ul class='reviews-pagination'>";
+                var g = 0;
+                if (@ViewBag.Paginador >= 5) {
+
+                    if (NumPaginas >= 5) {
+                        for (var i = @ViewBag.Paginador - 4; i <= @ViewBag.Paginador; i++)
+                        {
+                            if (i == NumPaginas)
+                            {
+                                Contenido += "<li class='active' >" + i + "</li>";
+                                g = 1;
+                            }
+                            else
+                            {
+                                if (i == @ViewBag.Paginador)
+                                {
+                                    Contenido += "<li><a onclick='Comentarios("+i+")'><i class='fa fa-angle-right'></i></a></li>";
+                                }
+                                else
+                                {
+                                    Contenido += "<li><a onclick='Comentarios("+i+")'>"+i+"</a></li>";
+                                }
+
+                            }
+                        }
+
+                    } else {
+                        for (var i = 1; i <= @ViewBag.Paginador; i++)
+                        {
+                            if (i == NumPaginas)
+                            {
+                                Contenido += "<li class='active' >" + i + "</li>";
+                                g = 1;
+                            }
+                            else
+                            {
+                                if (i == @ViewBag.Paginador)
+                                {
+                                    Contenido += "<li><a onclick='Comentarios("+i+")'><i class='fa fa-angle-right'></i></a></li>";
+                                }
+                                else
+                                {
+                                    Contenido += "<li><a onclick='Comentarios("+i+")'>"+i+"</a></li>";
+                                }
+
+                            }
+                        }
+                    }
+
+
+                }
+                else {
+                    for (var i = 1; i < @ViewBag.Paginador + 1; i++) {
+                        if (i == NumPaginas)
+                        {
+                            Contenido += "<li class='active' >" + i + "</li>";
+                            g = 1;
+                        }
+                        else
+                        {
+                            if (i == 5)
+                            {
+                                Contenido += "<li><a onclick='Comentarios("+i+")'><i class='fa fa-angle-right'></i></a></li>";
+                            }
+                            else
+                            {
+                                Contenido += "<li><a onclick='Comentarios("+i+")'>"+i+"</a></li>";
+                            }
+
+                        }
+                    }
+                }
+                Contenido +="</ul>";
+
+                $('#reviews').html(Contenido);
+            }
+        });
+    }
+
+    function RegitraComentario() {
+        if (Valid() == true) {
+
+            var Articulo = new Object();
+            Articulo.Id = @ViewBag.ArticuloConsulta.Articulo.Id;
+
+            var ArticuloComentario = new Object();
+            ArticuloComentario.Articulo = Articulo;
+            ArticuloComentario.Estrellas = Estrellas();
+            ArticuloComentario.Comentario = $('#R_Resena').val();
+
+            $.ajax({
+                url: "@Url.Action("ArticuloComentario_Agregar", "ArticuloComentario")",
+                type: "POST",
+                data: JSON.stringify(ArticuloComentario),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: 'Debes de iniciar sesión para poder dejar un comentario !',
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                },
+                success: function (response) {
+                    if (response.Id > 0) {
+                        swal({
+                            title: "Comentario agregado !",
+                            icon: "success",
+                            button: "Aceptar",
+                        })
+                        .then((value) => {
+                            location.reload();
+                        });
+                    } else if (response.Id = -2) {
+                        swal({
+                            title: "Algo ocurrió !",
+                            text: 'Debes de iniciar sesión para poder dejar un comentario !',
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+                    }
+                    else {
+                        swal({
+                            title: "Algo ocurrió !",
+                            text: 'Problemas para registrar tu comentario !!',
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+                    }
+                }
+            });
+        } else
+        {
+            $.notify({
+	            icon: 'fa fa-paw',
+	            message: Valid(),
+            },{
+                type: 'info',
+                allow_dismiss: false,
+                animate: {
+		            enter: 'animated rollIn',
+		            exit: 'animated rollOut'
+	            }
+            });
+        }
+    }
+
+    function Valid() {
+        var respuesta = false;
+        //$('#R_Email').css("border", "1px solid #E4E7ED");
+        //$('#R_Nombre').css("border", "1px solid #E4E7ED");
+        $('#R_Resena').css("border", "1px solid #E4E7ED");
+
+        //if ($('#R_Email').val().length > 0) {
+        //    if ($('#R_Nombre').val().length > 0) {
+                if ($('#R_Resena').val().length > 0) {
+                    /*if (CorreoRegistrar()) {*/
+                    //    // VALIDA ESTRELLLAS
+                        if (EstrellasTest()) {
+                            respuesta = true;
+                        } else {
+                            respuesta = "Califica el articulo con las estrellas.";
+                        }
+                    //} else {
+                    //    $('#R_Email').css("border", "1px solid red");
+                    //    respuesta = "Coloca tu correo electrónico correctamente";
+                    //}
+                }
+                else {
+                    $('#R_Resena').css("border", "1px solid red");
+                    respuesta = "Coloca tu reseña";
+                }
+        //    }
+        //    else {
+        //        $('#R_Nombre').css("border", "1px solid red");
+        //        respuesta = "Coloca tu nombre";
+        //    }
+        //} else {
+        //    $('#R_Email').css("border", "1px solid red");
+        //    respuesta = "Coloca tu correo electrónico ";
+        //}
+        return respuesta;
+    }
+
+    function Estrellas() {
+        var Num = 0;
+        if ($("#star5").is(':checked')) {
+            Num = 5;
+        } else if ($("#star4").is(':checked')) {
+            Num = 4;
+        } else if ($("#star3").is(':checked')) {
+            Num = 3;
+        } else if ($("#star2").is(':checked')) {
+            Num = 2;
+        } else if ($("#star1").is(':checked')) {
+            Num = 1;
+        }
+        return Num;
+    }
+
+    function EstrellasTest() {
+        var Num = 0;
+        var Resultado = false;
+        if ($("#star5").is(':checked')) {
+            Num = 5;
+        } else if ($("#star4").is(':checked')) {
+            Num = 4;
+        } else if ($("#star3").is(':checked')) {
+            Num = 3;
+        } else if ($("#star2").is(':checked')) {
+            Num = 2;
+        } else if ($("#star1").is(':checked')) {
+            Num = 1;
+        }
+        if (Num > 0) {
+            Resultado = true;
+        }
+
+        return Resultado;
+    }
+
+    function AgregarCarrito(IdArticulo)
+    {
+        var Cantidad = 0;
+        if ($('#NumeroCantidad').val() == "" || $('#NumeroCantidad').val() == 0) {
+            Cantidad = 1;
+        } else {
+            Cantidad = $('#NumeroCantidad').val();
+        }
+        
+        var Articulo = new Object();
+        Articulo.Id = IdArticulo;
+
+        var CarroElectronico = new Object();
+        CarroElectronico.Articulo = Articulo;
+        CarroElectronico.Item = Cantidad
+
+        $.ajax({
+            url: "@Url.Action("CarroElectronico_Agregar", "CarroElectronico")",
+            type: "POST",
+            data: JSON.stringify(CarroElectronico),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function () {
+                swal({
+                    title: "Algo ocurrió !",
+                    text: "Intentelo mas tarde",
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+            },
+            success: function (response) {
+                if (response.Id > 0) {
+                    swal({
+                        title: "Articulo agregado !",
+                        icon: "success",
+                        button: "Aceptar",
+                    });
+                    $('#BtCartShowp').attr('data-notify', response.Item);
+                }
+                else {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: response.RespuestaText,
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            }
+        });
+    }
+
+    function FormatoFecha(fecha) {
+        var pattern = /Date\(([^)]+)\)/; //date format from server side
+        var results = pattern.exec(fecha);
+        var dt = new Date(parseFloat(results[1]));
+        if (dt.getFullYear() === 9999) return ""; //Control para MaxValue
+        return ('0' + dt.getDate()).slice(-2) + "/" + ('0' + (dt.getMonth() + 1)).slice(-2) + "/" + dt.getFullYear();
+    }
+
+</script>

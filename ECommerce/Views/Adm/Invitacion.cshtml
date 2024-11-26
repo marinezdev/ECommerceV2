@@ -1,0 +1,604 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+
+    <link rel="icon" href="~/assets/images/icoCSB.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        body[themebg-pattern="theme1"] {
+            background-color: #b1ce69;
+        }
+
+        /*   Typography    */
+        .alert, button.close {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /*     Alert    */
+        .alert {
+            border: 0px;
+            position: relative;
+            padding: .95rem 1.25rem;
+            border-radius: 1px;
+            color: inherit;
+            background-color: #ffffff;
+            -webkit-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            -moz-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        }
+
+            .alert [data-notify="icon"] {
+                display: block;
+            }
+
+                .alert [data-notify="icon"]::before {
+                    line-height: 35px;
+                    font-size: 22px;
+                    display: block;
+                    left: 15px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 30px;
+                    text-align: center;
+                    color: #fff;
+                }
+
+            .alert [data-notify="title"] {
+                display: block;
+                color: #2b2b2b;
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .alert [data-notify="message"] {
+                font-size: 13px;
+                color: #908e8e;
+            }
+
+            .alert .close {
+                background: rgba(255, 255, 255, 0.8);
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                top: 12px !important;
+                border-radius: 50%;
+            }
+
+        /*    Alert States    */
+        .alert-default {
+            border-left: 4px solid #1a2035;
+        }
+
+            .alert-default [data-notify="icon"]:before {
+                background: #1a2035;
+            }
+
+        .alert-primary {
+            border-left: 4px solid #1572E8;
+        }
+
+            .alert-primary [data-notify="icon"]:before {
+                background: #1572E8;
+            }
+
+        .alert-secondary {
+            border-left: 4px solid #6861CE;
+        }
+
+            .alert-secondary [data-notify="icon"]:before {
+                background: #6861CE;
+            }
+
+        .alert-info {
+            border-left: 4px solid #48ABF7;
+        }
+
+            .alert-info [data-notify="icon"]:before {
+                background: #48ABF7;
+            }
+
+        .alert-success {
+            border-left: 4px solid #31CE36;
+        }
+
+            .alert-success [data-notify="icon"]:before {
+                background: #31CE36;
+            }
+
+        .alert-warning {
+            border-left: 4px solid #FFAD46;
+        }
+
+            .alert-warning [data-notify="icon"]:before {
+                background: #FFAD46;
+            }
+
+        .alert-danger {
+            border-left: 4px solid #F25961;
+        }
+
+            .alert-danger [data-notify="icon"]:before {
+                background: #F25961;
+                z-index: 9999;
+            }
+
+        [data-notify] {
+            z-index: 999999999991 !important;
+        }
+
+        .pcoded .pcoded-header[header-theme="theme1"] {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+            color: #fff !important;
+        }
+
+        .pcoded[fream-type="theme1"] .page-header:before, .pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+            background: linear-gradient(to right, #185a9deb, #9c27b0c2);
+        }
+
+        .bg-c-purple {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .card .card-header h5:after {
+            content: "";
+            background-color: #9a28b0;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 20px;
+        }
+
+        .text-c-purple {
+            color: #9c28b0;
+        }
+
+        .pcoded .pcoded-navbar .pcoded-navigation-label[menu-title-theme="theme1"] {
+            color: #5d40a7;
+        }
+
+        .btn-success {
+            background: linear-gradient(310deg,#17ad37,#98ec2d);
+            background-color: #11c15b;
+            border-color: #a8ffcd;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .md-tabs .nav-item.open .nav-link, .md-tabs .nav-item.open .nav-link:focus, .md-tabs .nav-item.open .nav-link:hover, .md-tabs .nav-link.active, .md-tabs .nav-link.active:focus, .md-tabs .nav-link.active:hover {
+            color: #5d40a7;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .nav-tabs .slide {
+            background: #9a27af;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            -webkit-transition: left 0.3s ease-out;
+            transition: left 0.3s ease-out;
+            bottom: 0;
+        }
+
+        .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
+            background-color: #448aff;
+            background: linear-gradient(310deg,#b0ce68,#77a4b5);
+            border-color: #d7e2f5;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+            border-radius: 8px;
+        }
+
+            .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
+                background: linear-gradient(310deg,#2152ff,#21d4fd);
+                border-radius: 5px;
+            }
+
+        .btn-info {
+            background: linear-gradient(310deg,#007989,#00bcd4);
+            /* background-color: #00bcd4; */
+            border-color: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-danger {
+            background: linear-gradient(310deg,#ea0606,#ff667c);
+            border-color: #ff5252;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-warning {
+            background: linear-gradient(310deg,#f53939,#fbcf33);
+            border-color: #ffe100;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(310deg,#404040,#868e96);
+            color: #fff;
+            background-color: #868e96;
+            border-color: #868e96;
+            border-radius: 5px;
+            border-radius: 8px;
+        }
+
+        .h3, h3 {
+            font-size: 1.75rem;
+            color: #3b3b3b;
+            font-size: 23px;
+            line-height: 1.2;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.4375rem 0.875rem;
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #697a8d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d9dee3;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.375rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .login-block .auth-box {
+            margin: 20px auto 0 auto;
+            max-width: 400px;
+            border-radius: 14px;
+        }
+    </style>
+</head>
+
+<body themebg-pattern="theme1">
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <section class="login-block">
+        <!-- Container-fluid starts -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+
+                    <form class="" id="loginForm">
+                        <div class="text-center">
+                            <img src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Compra sin registrarte</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-secondary btn-md btn-block waves-effect waves-light text-center" onclick="ContinuarSinRegistro()">Continuar</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Inicia sesión para comprar</h3>
+                                    </div>
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="form-email">Correo electrónico:</label>
+                                            <input type="email" name="form-email" placeholder="Email ... " class="form-control" id="email">
+                                            <label id="MensajeText" class="text-danger" style="display: none;"> </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="form-last-name">Contraseña:</label>
+                                            <input type="password" name="Password" placeholder="Password ..." class="form-last-name form-control" id="password" style="height: 40px;">
+                                            <label id="MensajePasswordText" class="text-danger" style="display: none;"> </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button  type="submit" id="IniciarSesion" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" >Iniciar Sesión </button>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button"  class="btn btn-secondary btn-md btn-block waves-effect waves-light text-center" id="BtnCrearCuenta"> Crear una cuenta </button>
+                                    </div>
+                                </div>
+                                <div class="row m-t-20">
+                                    <div class="col-md-9">
+                                        @*<p class="text-inverse text-left m-b-0">Thank you.</p>*@
+                                        <p class="text-inverse text-left"><a href="@Url.Action("Index", "RecuperarPassword")"><b>¿Olvidaste tu contraseña?</b></a></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img src="~/images/icons/CSB_Mexico.png" alt="small-logo.png" width="100%" onclick="Redirecionar()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end of form -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    <!-- Warning Section Starts -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/assets/js/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/script.js "></script>
+
+    <script>
+        function Redirecionar() {
+            window.location.href = '@Url.Action("Index", "Tienda")';
+        }
+
+        function ContinuarSinRegistro() {
+            $.ajax({
+                url: "@Url.Action("Venta_ClienteInvitado", "Adm")",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                },
+                success: function (response) {
+                    switch (response.Id) {
+                        case 3:
+                            window.location.href = '@Url.Action("DireccionInvitado", "VentaDireccion")';
+                            break;
+                        default:
+                        // code block
+                    }
+                }
+            });
+        }
+
+        $('#BtnCrearCuenta').click(function () {
+            $.ajax({
+                url: "@Url.Action("Venta_ClienteNuevo", "Adm")",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                },
+                success: function (response) {
+                    switch (response.Id) {
+                        case 1:
+                            window.location.href = '@Url.Action("TerminosCondiciones", "Registro")';
+                            break;
+                        default:
+                        // code block
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            // Asociar evento 'submit' al formulario con el id "loginForm"
+
+            $("#loginForm").on("submit", function (event) {
+
+                $('#IniciarSesion').prop('disabled', true);
+
+                event.preventDefault(); // Prevenir el envío del formulario por defecto
+
+                if (validateFrom()) {
+
+                    var Session = false;
+                    if ($('input:checkbox[name=SesionCheck]:checked').val()) {
+                        Session = true;
+                    }
+
+                    var Rol = new Object();
+                    Rol.Ruta = '@ViewBag.rd';
+                    Rol.RutaAcceso = '@ViewBag.rdv';
+
+                    var Usuario = new Object();
+                    Usuario.Rol = Rol;
+                    Usuario.usuario = $("#email").val();
+                    Usuario.Password = $("#password").val();
+                    Usuario.Session = Session;
+
+                    $.ajax({
+                        url: "@Url.Action("IniciarSesion", "Adm")",
+                        type: "POST",
+                        data: JSON.stringify(Usuario),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        error: function () {
+                            $('#IniciarSesion').prop('disabled', false);
+                            swal({
+                                title: "Algo ocurrió !",
+                                text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                                icon: "warning",
+                                button: "Aceptar",
+                            });
+                        },
+                        success: function (response) {
+                            if (response.Id > 0) {
+                                swal({
+                                    title: "Bienvenido. !",
+                                    text: response.Persona.Nombre + " " + response.Persona.ApellidoPaterno + " " + response.Persona.ApellidoMaterno,
+                                    icon: "success",
+                                    button: "Aceptar",
+                                }).then((value) => {
+                                    window.location.href = '@Url.Action("DireccionUsuario", "VentaDireccion")';
+                                });
+                            } else {
+                                $('#IniciarSesion').prop('disabled', false);
+                                swal({
+                                    title: "Algo ocurrió !",
+                                    text: response.Mensaje,
+                                    icon: "warning",
+                                    button: "Aceptar",
+                                });
+                            }
+                        }
+                    });
+
+
+                } else {
+                    $('#IniciarSesion').prop('disabled', false);
+                }
+
+            });
+
+
+            function validateFrom() {
+                var result = false;
+
+                $("#MensajeText").css("display", "none");
+                $("#MensajePasswordText").css("display", "none");
+                $('#email').css("border", "1px solid #d9dee3");
+                $('#password').css("border", "1px solid #d9dee3");
+
+                // Obtener los valores del correo electrónico y contraseña
+                var email = $("#email").val();
+                var password = $("#password").val();
+
+                // Validar el formulario
+                if (!validateEmail(email)) {
+                    $('#email').css("border", "2px solid #ff0049");
+                    $('#MensajeText').html("Por favor, ingresa un correo electrónico válido.");
+                    $("#MensajeText").show();
+                }
+
+                if (password.length < 8) {
+                    $('#password').css("border", "2px solid #ff0049");
+                    $('#MensajePasswordText').html("La contraseña debe tener al menos 8 caracteres.");
+                    $("#MensajePasswordText").show();
+                }
+
+                if (validateEmail(email)) {
+                    if (password.length >= 8) {
+                        result = true;
+                    }
+                }
+                return result;
+            }
+
+            // Función para validar el formato del correo electrónico utilizando una expresión regular
+            function validateEmail(email) {
+                var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+                return emailRegex.test(email);
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>

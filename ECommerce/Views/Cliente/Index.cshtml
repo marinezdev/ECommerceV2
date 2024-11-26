@@ -1,0 +1,704 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+}
+<!-- Favicon icon -->
+<link rel="icon" href="~/assets/images/icoCSB.ico" type="image/x-icon">
+<!-- Google font-->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+<!-- waves.css -->
+<link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+<!-- Required Fremwork -->
+<link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+<!-- waves.css -->
+<link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+<!-- themify icon -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+<!-- scrollbar.css -->
+<link rel="stylesheet" type="text/css" href="~/assets/css/jquery.mCustomScrollbar.css">
+<!-- am chart export.css -->
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<!-- Style.css -->
+<link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+<style>
+
+    /*   Typography    */
+    .alert, button.close {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Lato', sans-serif;
+    }
+
+    /*     Alert    */
+    .alert {
+        border: 0px;
+        position: relative;
+        padding: .95rem 1.25rem;
+        border-radius: 1px;
+        color: inherit;
+        background-color: #ffffff;
+        -webkit-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        -moz-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+    }
+
+        .alert [data-notify="icon"] {
+            display: block;
+        }
+
+            .alert [data-notify="icon"]::before {
+                line-height: 35px;
+                font-size: 22px;
+                display: block;
+                left: 15px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 35px;
+                height: 35px;
+                border-radius: 30px;
+                text-align: center;
+                color: #fff;
+            }
+
+        .alert [data-notify="title"] {
+            display: block;
+            color: #2b2b2b;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .alert [data-notify="message"] {
+            font-size: 13px;
+            color: #908e8e;
+        }
+
+        .alert .close {
+            background: rgba(255, 255, 255, 0.8);
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            top: 12px !important;
+            border-radius: 50%;
+        }
+
+    /*    Alert States    */
+    .alert-default {
+        border-left: 4px solid #1a2035;
+    }
+
+        .alert-default [data-notify="icon"]:before {
+            background: #1a2035;
+        }
+
+    .alert-primary {
+        border-left: 4px solid #1572E8;
+    }
+
+        .alert-primary [data-notify="icon"]:before {
+            background: #1572E8;
+        }
+
+    .alert-secondary {
+        border-left: 4px solid #6861CE;
+    }
+
+        .alert-secondary [data-notify="icon"]:before {
+            background: #6861CE;
+        }
+
+    .alert-info {
+        border-left: 4px solid #48ABF7;
+    }
+
+        .alert-info [data-notify="icon"]:before {
+            background: #48ABF7;
+        }
+
+    .alert-success {
+        border-left: 4px solid #31CE36;
+    }
+
+        .alert-success [data-notify="icon"]:before {
+            background: #31CE36;
+        }
+
+    .alert-warning {
+        border-left: 4px solid #FFAD46;
+    }
+
+        .alert-warning [data-notify="icon"]:before {
+            background: #FFAD46;
+        }
+
+    .alert-danger {
+        border-left: 4px solid #F25961;
+    }
+
+        .alert-danger [data-notify="icon"]:before {
+            background: #F25961;
+            z-index: 9999;
+        }
+
+    [data-notify] {
+        z-index: 999999999991 !important;
+    }
+
+    .pcoded .pcoded-header[header-theme="theme1"] {
+        background: linear-gradient(to right, #78a4b8, #b1cc69);
+    }
+
+    .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+    }
+
+    .pcoded[fream-type="theme1"] .page-header:before, .pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+
+    .bg-c-purple {
+        background: linear-gradient(to right, #185a9d, #9C27B0);
+    }
+
+    .card .card-header h5:after {
+        content: "";
+        background-color: #9a28b0;
+        position: absolute;
+        left: -20px;
+        top: 0;
+        width: 4px;
+        height: 20px;
+    }
+
+    .text-c-purple {
+        color: #9c28b0;
+    }
+
+    .pcoded .pcoded-navbar .pcoded-navigation-label[menu-title-theme="theme1"] {
+        color: #7aa5b6;
+    }
+
+
+
+    .md-tabs .nav-item.open .nav-link, .md-tabs .nav-item.open .nav-link:focus, .md-tabs .nav-item.open .nav-link:hover, .md-tabs .nav-link.active, .md-tabs .nav-link.active:focus, .md-tabs .nav-link.active:hover {
+        color: #5d40a7;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .nav-tabs .slide {
+        background: #9a27af;
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        -webkit-transition: left 0.3s ease-out;
+        transition: left 0.3s ease-out;
+        bottom: 0;
+    }
+
+    .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
+        background-color: #448aff;
+        background: linear-gradient(310deg,#b1cc6a,#77a3b7);
+        border-color: #b1cc6a;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+        .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
+            background: linear-gradient(310deg,#2152ff,#21d4fd);
+            border-radius: 5px;
+        }
+
+    .btn-success {
+        background: linear-gradient(310deg,#17ad37,#7bd10e);
+        background-color: #8ae52e;
+        border-color: #72cd11;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+    .btn-info {
+        background: linear-gradient(310deg,#007989,#00bcd4);
+        /* background-color: #00bcd4; */
+        border-color: #00bcd4;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+    .btn-danger {
+        background: linear-gradient(310deg,#ea0606,#ff667c);
+        border-color: #fd5d71;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+    .btn-warning {
+        background: linear-gradient(310deg,#f53939,#fbcf33);
+        border-color: #fbc234;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+    .btn-secondary {
+        background: linear-gradient(310deg,#007989,#00bcd4);
+        /* background-color: #00bcd4; */
+        border-color: #00b6ce;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all ease-in 0.3s;
+        transition: all ease-in 0.3s;
+    }
+
+
+    .bg-primary {
+        background: linear-gradient(to right, #185a9d, #9C27B0);
+        color: #fff;
+    }
+</style>
+<style>
+    .page-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+        text-align: left;
+        padding: 5px 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a > span > i {
+        color: #fff !important;
+    }
+    .pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon {
+        font-size: 14px;
+        padding: 4px;
+        margin-right: 10px;
+        color: black;
+        border-radius: 4px;
+        width: 30px;
+        display: inline-block;
+        height: 30px;
+        text-align: center;
+        position:relative;
+    }
+
+    .progreso img{
+        width: 25%;
+        margin: 7% auto;
+        position:relative;
+    }
+    ul.custom-list {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    ul.custom-list li {
+        display: inline-block;
+        width: 200px;
+    }
+
+    .progreso .vertical-line {
+        position: absolute;
+        width: 6px;
+        background-color: #ccc;
+        height: 75%;
+        top: 122px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .vertical-line::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        background-color: #3498db;
+        z-index: -1;
+    }
+    .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 9px;
+    }
+
+    .progress-step img {
+        max-width: 100px;
+        cursor:pointer;
+    }
+
+    .progress-step i {
+        margin-top: -9px;
+    }
+
+    .progress-step p {
+        margin-top: 0px;
+    }
+    ul li .progres-icon {
+        font-size: 150%;
+        background: #ccc;
+        color: #fff;
+        border-radius: 50%;
+        padding: 3px;
+        width: 25px;
+        height: 25px;
+    }
+    .contenedor-progress {
+        padding-top: 0px !important;
+    }
+    .progress-step p {
+        margin-top: 5px;
+        background-color: #f9f9f9; 
+        padding: 5px 10px;
+        border-radius: 5px; 
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    }
+
+    ul li:nth-child(1) .fa,
+    ul li:nth-child(2) .fa {
+        background: #60aa97;
+    }
+    ul li:nth-child(3) .fa{
+        background: #148e14;
+    }
+
+    .step1 {
+        background-color: #60AA97 !important;
+        color:white;
+    }
+    .step2 {
+        background-color: #60AA97 !important;
+        color: white;
+    }
+    .step3 {
+        background-color: #148e14 !important;
+        color: white;
+    }
+
+
+
+
+    .parallax {
+        background-image: url('/assets/img/licores_bg.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: 271px;
+        height: 33vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .parallax-content {
+        background-color: rgba(255, 255, 255, 0.8); 
+        padding: 20px;
+    }
+    .progress-step .hover-info {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+        left: -18%;
+        top: 48%;
+        transform: translateY(-50%);
+        background: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 200px; 
+    }
+    .progress-step:hover .progres-icon,
+    .progress-step:hover .hover-info {
+        opacity: 1;
+    }
+
+    .fa-home {
+        background: none !important
+    }
+
+</style>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard</h5>
+                        <p class="m-b-0">Ecommerce casalbor </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="/Cliente"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <div class="row">
+
+                        <div class="col-xs-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Inicio   </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="card-box pd-20 height-100-p" style="margin-bottom:5%">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-4">
+                                                        <img src="~/assets/icon/banner-img.png" style="width:100%">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                                                            Bienvenido de nuevo <div class="weight-600 font-30 text-blue">@ViewBag.User.Persona.Nombre @ViewBag.User.Persona.ApellidoPaterno !</div>
+                                                        </h4>
+                                                        <p class="font-18 max-width-600">
+                                                            Nos complace verte de regreso en tu área personal. Aquí tienes el control total sobre tus acciones y datos:
+                                                        <p class="text-justify"><strong> Compras:</strong> Revisa tus compras anteriores y realiza un seguimiento detallado de tus transacciones.</p>
+                                                        <p class="text-justify"><strong>Estadísticas:</strong> Obtén una visión clara de tus estadísticas de compras y utiliza esta información para tomar decisiones informadas.</p>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="card">
+                                                        <div style="width: 100%; height: 300px;">
+                                                            <canvas id="myDoughnutChart"></canvas>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+    
+
+
+                                                <div class="col-6">
+                                                    <div class="card">
+                                                        <div style="width: 100%; height: 300px;">
+                                                            <canvas id="myLineChart"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="parallax">
+                                                <div class="parallax-content">
+                                                    <h1>¡Promociones para ti!</h1>
+                                                    <p>Da click aqui</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-8 col-md-5 col-lg-4 col-xl-3">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Estado de tu último Pedido</h5>
+                                </div>
+                                <div class="card-block contenedor-progress">
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12 progreso">
+                                            <div class="row">
+
+                                                <div class="col card mb-0 text-center">
+                                                    <p><b># Orden</b></p>
+                                                    Y6TDBHWO9
+                                                </div>
+                                                <div class="col card mb-0 text-center">
+                                                    <p><b>Nombre</b></p>
+                                                    LICOR DE ALMENDRAS
+                                                </div>
+
+                                                <ul class="custom-list">
+                                                    <li>
+                                                        <div class="progress-step">
+                                                            <img src="~/assets/icon/screen-cart.png" alt="Paso 1">
+                                                            <i class="progres-icon fa fa-check-circle"></i>
+                                                            <p class="step1">Agregado al carrito</p>
+                                                            <div class="hover-info">
+                                                                <h5>Agregaste al carrito</h5>
+                                                                <p>11/10/2023  4:31 AM</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="progress-step">
+                                                            <img src="~/assets/icon/buy-hand.png" alt="Paso 2">
+                                                            <i class="progres-icon fa fa-check-circle "></i>
+                                                            <p class="step2">Compra</p>
+                                                            <div class="hover-info">
+                                                                <h5>Compraste el producto</h5>
+                                                                <p>12/10/2023  10:00 AM</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="progress-step">
+                                                            <img src="~/assets/icon/cash-register.png" alt="Paso 3">
+                                                            <i class="progres-icon fa fa-refresh"></i>
+                                                            <p class="step3">Registrado</p>
+                                                            <div class="hover-info">
+                                                                <h5>Empaquetado de Producto</h5>
+                                                                <p>13/10/2023  09:08 PM</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="progress-step">
+                                                            <img src="~/assets/icon/delivery-truck.png" alt="Paso 4">
+                                                            <i class="progres-icon fa fa-clock-o"></i>
+                                                            <p class="step4">En transporte</p>
+                                                            <div class="hover-info">
+                                                                <h5>En Viaje</h5>
+                                                                <p>A la espera</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="vertical-line"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Page-body end -->
+                </div>
+                <div id="styleSelector"> </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/js/chart.js/Chart.js"></script>
+
+    <script src="~/assets/js/jquery/jquery.min.js"></script>
+    <script>$('#IdMenuDashboard').addClass("active");</script>
+
+    <script>
+        // Datos para el gráfico
+        var data = {
+            labels: ['Vinos', 'Licores', 'Spirits'],
+            datasets: [{
+                data: [30, 45, 25],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            }]
+        };
+
+        // Opciones del gráfico
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: true,
+                position: 'bottom'
+            },
+            title: {
+                display: true,
+                text: 'Gastos por producto'
+            }
+        };
+
+        // Crear el gráfico de tipo "doughnut"
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+
+        // Datos para el gráfico
+        var data = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            datasets: [{
+                label: 'Compras mensuales',
+                data: [120, 150, 180, 90, 200],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                pointBackgroundColor: '#AF1024',
+                pointRadius: 5,
+                pointBorderWidth: 2,
+                pointBorderColor: '#AF1024',
+                pointHoverRadius: 7,
+                pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                pointHoverBorderColor: 'rgba(220, 220, 220, 1)'
+            }]
+        };
+        //#AF1024
+        //rgba(255, 255, 255, 1)
+        // Opciones del gráfico
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Ventas Mensuales'
+                }
+            }
+        };
+
+        // Crear el gráfico de tipo "line"
+        var ctx = document.getElementById('myLineChart').getContext('2d');
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>

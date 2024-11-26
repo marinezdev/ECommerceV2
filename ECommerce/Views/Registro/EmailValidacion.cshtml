@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "EmailValidacion";
+    Layout = "~/Views/Shared/_Layout_Registro.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+<style>
+    .card .card-block {
+        padding: 70px;
+    }
+    
+
+    .sweet-alert h2 {
+        color: #232323;
+        font-family: inherit;
+        font-size: 20px;
+        text-align: center;
+        font-weight: 600;
+        /* text-transform: none; */
+        /* position: relative; */
+        margin: 10px 0;
+        padding: 0;
+        line-height: 22px;
+        /* display: block; */
+    }
+
+    .sweet-alert p {
+        color: #797979;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 300;
+        position: relative;
+        text-align: inherit;
+        float: none;
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+    }
+
+    .sweet-alert button.cancel {
+        background-color: #fffdfd;
+        color: #76952a;
+    }
+
+    .sweet-alert button.cancel:hover {
+        background-color: #fffdfd;
+        color: #b1ce69;
+        border-color: #b1ce69;
+    }
+
+    .sweet-alert button.confirm {
+        background-color: #CDDC39 !important;
+    }
+
+    .btn-primary:hover, .sweet-alert button.confirm:hover, .wizard > .actions a:hover {
+        border-color: #e1e6e7;
+        background: #e1e6e7;
+        color: #08744F;
+        transition: background-color 0.3s ease;
+    }
+
+</style>
+
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+
+                <form class="">
+                    <div class="text-center">
+                        <img src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                    </div>
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="~/images/icons/1237439.png" alt="logo.png" width="30%">
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 23px;">Ingresa tu e-mail</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 17px; font-weight: 300; padding-top: 15px; ">Asegúrate de tener acceso a él.</h3>
+                                </div>
+                            </div>
+                            <div class="row m-t-20">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group text-center">
+                                        <input type="text" class="form-control form-control" id="Email" onchange="ValidaInput('Email')" placeholder="Ingrese su correo electrónico">
+                                        <label id="MensajeText" class="text-danger" style="display: none;">Mensaje </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center" id="BtnRegistarEmail" disabled> Continuar  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+
+<script>
+    $('#BtnRegistarEmail').click(function () {
+        var email = $('#Email').val();
+        if (isValidEmail(email)) {
+            $("#MensajeText").css("display", "none");
+            $('#BtnRegistarEmail').prop('disabled', true);
+
+            var obj = {};
+
+            obj['email'] = email;
+
+            var jsonObject = {
+                "Email": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("NuevoUsuario_Email", "Registro")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    switch (data.Id) {
+                        case 1:
+                                swal({
+                                    title: "Operación denegada.",
+                                    text: "Debes de aceptar los términos y condiciones.",
+                                    imageUrl: "../images/icons/7353427.png",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Aceptar",
+                                    closeOnConfirm: false,
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("TerminosCondiciones", "Registro")';
+                                    }
+                                });
+                            break;
+                        case 2:
+                                $('#BtnRegistarEmail').prop('disabled', true);
+                                swal({
+                                    title: "Ya existe una cuenta con el e-mail \n " + $('#Email').val(),
+                                    text: "Si tienes cuenta en Ecommerce – Nombre, no necesitas crear una nueva. Inicia sesión con ese e-mail.",
+                                    imageUrl: "../images/icons/1731659.png",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Iniciar sesión ",
+                                    cancelButtonText: "Usar otro e-mail",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("Index", "Adm")';
+                                    } else {
+                                        swal.close();
+                                    }
+                                });
+                            break;
+                        case 3:
+                                window.location.href = '@Url.Action("EmailVerificado", "Registro")';
+                            break;
+                        default:
+                                
+                            break;
+                    }
+                },
+                error: function () {
+                    swal({
+                        title:"Problemas de conexión",
+                        text: "Inténtelo mas tarde.",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                    $('#BtnRegistarEmail').prop('disabled', true);
+                }
+            });
+        } else {
+            $('#Email').css("border", "2px solid #ff0049");
+            $('#MensajeText').html("Usa el formato nombre@ejemplo.com.");
+            $("#MensajeText").show();
+        }
+    });
+
+    $('#Email').on('input', function () {
+        var email = $(this).val();
+
+        // Habilita o deshabilita el botón en función del contenido del campo de entrada
+        if (email.trim() !== '') {
+            $('#BtnRegistarEmail').prop('disabled', false);
+
+        } else {
+            $('#BtnRegistarEmail').prop('disabled', true);
+            $("#MensajeText").css("display", "none");
+            $('#Email').css("border", "1px solid rgb(222 222 222)");
+        }
+    });
+
+</script>

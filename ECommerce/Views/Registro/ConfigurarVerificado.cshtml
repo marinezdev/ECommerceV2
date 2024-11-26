@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "ConfigurarVerificado";
+    Layout = "~/Views/Shared/_Layout_Registro.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+
+<style>
+
+    .sweet-alert h2 {
+        color: #232323;
+        font-family: inherit;
+        font-size: 20px;
+        text-align: center;
+        font-weight: 600;
+        /* text-transform: none; */
+        /* position: relative; */
+        margin: 10px 0;
+        padding: 0;
+        line-height: 22px;
+        /* display: block; */
+    }
+
+    .sweet-alert p {
+        color: #797979;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 300;
+        position: relative;
+        text-align: inherit;
+        float: none;
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+    }
+
+    .sweet-alert button.cancel {
+        background-color: #fffdfd;
+        color: #76952a;
+    }
+
+        .sweet-alert button.cancel:hover {
+            background-color: #fffdfd;
+            color: #b1ce69;
+            border-color: #b1ce69;
+        }
+
+    .sweet-alert button.confirm {
+        background-color: #CDDC39 !important;
+    }
+
+        .btn-primary:hover, .sweet-alert button.confirm:hover, .wizard > .actions a:hover {
+            border-color: #e1e6e7;
+            background: #e1e6e7;
+            color: #08744F;
+            transition: background-color 0.3s ease;
+        }
+</style>
+
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container">
+        <div class="row" >
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+                <form class="FormularioNuevoUsuario">
+                    <div class="text-center">
+                        <img src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                    </div>
+                    <div class="auth-box card" id="FromPassword">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="~/images/icons/6146586_verificado.png" alt="logo.png" width="30%">
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 23px;">Contraseña creada </h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center" id="BtnContinuar"> Continuar  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="auth-box card" id="FromRegistro" style="display:none;">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="~/images/icons/lodign.gif" width="100%" />
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 23px;">Procedando tus datos ... </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#BtnContinuar').click(function () {
+
+            $("#FromRegistro").show();
+            $("#FromPassword").css("display", "none");
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Usuario_Agregar", "Usuario")",
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    switch (data.Id) {
+                        case 0:
+                                swal({
+                                    title: "Operación denegada.",
+                                    text: "Debes de aceptar los términos y condiciones.",
+                                    imageUrl: "../images/icons/7353427.png",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Aceptar",
+                                    closeOnConfirm: false,
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("TerminosCondiciones", "Registro")';
+                                    }
+                                });
+                            break;
+                        case 1:
+                            swal({
+                                    title: "Nuevo usuario registrado.",
+                                    text: "Felicitaciones has termino de registrar tu usuario.",
+                                    imageUrl: "../images/icons/327527.png",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Aceptar",
+                                    closeOnConfirm: false,
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("DireccionUsuario", "VentaDireccion")';
+                                    }
+                                });
+                            break;
+                        case 2:
+                            swal({
+                                    title: "Nuevo usuario registrado.",
+                                    text: "Felicitaciones has termino de registrar tu usuario.",
+                                    imageUrl: "../images/icons/327527.png",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Aceptar",
+                                    closeOnConfirm: false,
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("Index", "Cliente")';
+                                    }
+                                });
+                            break;
+                        case 4:
+                            swal({
+                                    title: "Ya existe una cuenta con el e-mail que intentas registrar",
+                                    text: "Si tienes cuenta en Ecommerce – Nombre, no necesitas crear una nueva. Inicia sesión con ese e-mail.",
+                                    imageUrl: "../images/icons/1731659.png",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Iniciar sesión ",
+                                    cancelButtonText: "Usar otro e-mail",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = '@Url.Action("Index", "Adm")';
+                                    } else {
+                                        window.location.href = '@Url.Action("Progreso", "Registro")';
+                                    }
+                                });
+                            break;
+                    }
+                },
+                error: function () {
+                    swal({
+                        title:"Problemas de conexión",
+                        text: "Inténtelo mas tarde.",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+
+                    $("#FromPassword").show();
+                    $("#FromRegistro").css("display", "none");
+
+                }
+            });
+
+        });
+    });
+</script>

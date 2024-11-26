@@ -1,0 +1,353 @@
+﻿
+@{
+    ViewBag.Title = "ConfigurarValidacion";
+    Layout = "~/Views/Shared/_Layout_Registro.cshtml";
+}
+
+<style>
+    .login-block .auth-box {
+        margin: 20px auto 0 auto;
+        max-width: 450px;
+    }
+
+    .card .card-block {
+        padding: 70px;
+    }
+</style>
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+
+                <form class="" id="FormularioNuevoUsuario">
+                    <div class="text-center">
+                        <img src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                    </div>
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="~/images/icons/6146586.png" alt="logo.png" width="20%">
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 23px;">Crea tu contraseña  </h3>
+                                    <h3 class="text-center" style="font-size: 14px; font-weight: 300; padding-top: 15px; ">Ingresa una contraseña segura que no uses en otras plataformas .<br /><br /></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Ingresa tu contraseña  </label>
+                                        <input type="password" class="form-control input-mayusculas" id="NuevoPassword" onchange="ValidaInput('NuevoPassword')" autocomplete="off">
+                                        <label id="MensajeTextNuevoPassword" class="text-danger" style="display: none;"> </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen1" width="5%" style="padding-bottom: 4px" />
+                                    Mínimo 8 caracteres con letras y números.</label>
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen2" width="5%" style="padding-bottom: 4px" />
+                                        Debe contener letras y números.
+                                    </label>
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen5" width="5%" style="padding-bottom: 4px" />
+                                        No incluyas tu nombre o apellido.
+                                    </label>
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen3" width="5%" style="padding-bottom: 4px" />
+                                        Sin secuencias como 1234 o ABCD.
+                                    </label>
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen4" width="5%" style="padding-bottom: 4px" />
+                                        Sin caracteres repetidos consecutivos como aa.
+                                    </label>
+                                    <label style="font-size: 12px; font-weight: 300; padding-top: 5px; color: #757575;">
+                                        <img src="~/images/icons/icone-cercle-rempli-gris.png" id="imagen6" width="5%" style="padding-bottom: 4px" />
+                                        Sin tu email.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Confirma tu contraseña  </label>
+                                        <input type="password" class="form-control input-mayusculas" id="RepetirPassword" onchange="ValidaInput('RepetirPassword')" autocomplete="off">
+                                        <label id="MensajeTextRepetirPassword" class="text-danger" style="display: none;"> </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center" id="BtnRegistarPassword"> Continuar  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Asociar evento 'input' al input tipo password con el id "passwordInput"
+        $("#NuevoPassword").on("change", function () {
+
+            // Obtener el valor actual del input
+            var password = $(this).val();
+
+            // Validar la contraseña utilizando expresiones regulares
+            var regexLength = /.{8,}/; // Mínimo 8 caracteres
+            var regexLettersNumbers = /^(?=.*[a-zA-Z])(?=.*[0-9])/; // Letras y números
+            var regexSequences = /^(?!.*(?:1234|ABCD)).*$/; // No incluir secuencias
+            var regexConsecutiveChars = /^(?!.*(\w)\1).*$/; // No caracteres repetidos consecutivos
+
+            /*var errorMessages = [];*/
+            var imagen1 = $("#imagen1");
+            var imagen2 = $("#imagen2");
+            var imagen3 = $("#imagen3");
+            var imagen4 = $("#imagen4");
+            var imagen5 = $("#imagen5");
+            var imagen6 = $("#imagen6");
+
+            imagen1.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+            imagen2.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+            imagen3.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+            imagen4.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+            imagen5.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+            imagen6.attr("src", "~/images/icons/icone-cercle-rempli-gris.png");
+
+            if (!regexLength.test(password)) {
+                /* alert("La contraseña debe tener al menos 8 caracteres.");*/
+                imagen1.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen1.attr("src", "../images/icons/1709977.png");
+            }
+
+            if (!regexLettersNumbers.test(password)) {
+                //alert("La contraseña debe contener letras y números.");
+                imagen2.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen2.attr("src", "../images/icons/1709977.png");
+            }
+
+            if (!regexSequences.test(password)) {
+                //alert("La contraseña no puede incluir secuencias como 1234 o ABCD.");
+                imagen3.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen3.attr("src", "../images/icons/1709977.png");
+            }
+
+            if (!regexConsecutiveChars.test(password)) {
+                //alert("La contraseña no puede contener caracteres repetidos consecutivos.")
+                imagen4.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen4.attr("src", "../images/icons/1709977.png");
+            }
+
+            if (BuscarNombre(password)) {
+                imagen5.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen5.attr("src", "../images/icons/1709977.png");
+            }
+
+            if (BuscarEmail(password)) {
+                imagen6.attr("src", "../images/icons/icone-x-avec-cercle-rouge.png");
+            } else {
+                imagen6.attr("src", "../images/icons/1709977.png");
+            }
+
+            $('#NuevoPassword').css("border", "1px solid #d9dee3");
+            $("#MensajeTextNuevoPassword").css("display", "none");
+
+        });
+
+        $("#FormularioNuevoUsuario").on("submit", function (event) {
+            // Prevenir el envío del formulario por defecto
+            event.preventDefault();
+            
+
+            if (isValidFomr()) {
+               
+                $('#BtnRegistarPassword').prop('disabled', false);
+
+                var obj = {};
+                obj['Password'] = $('#RepetirPassword').val();
+
+                var jsonObject = {
+                    "Usuario": obj
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("NuevoUsuario_Password", "Registro")",
+                    async: false,
+                    data: JSON.stringify(jsonObject),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        switch (data.Id) {
+                            case 1:
+                                    swal({
+                                        title: "Operación denegada.",
+                                        text: "Debes de aceptar los términos y condiciones.",
+                                        imageUrl: "../images/icons/7353427.png",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Aceptar",
+                                        closeOnConfirm: false,
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = '@Url.Action("TerminosCondiciones", "Registro")';
+                                        }
+                                    });
+                                break;
+                            case 2:
+                                    window.location.href = '@Url.Action("ConfigurarVerificado", "Registro")';
+                                break;
+                            default:
+
+                                break;
+                        }
+                    },
+                    error: function () {
+                        swal({
+                            title:"Problemas de conexión",
+                            text: "Inténtelo mas tarde.",
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+
+                        $('#BtnRegistarPassword').prop('disabled', true);
+                    }
+                });
+
+            } else {
+                $('#NuevoPassword').css("border", "2px solid #ff0049");
+                $('#MensajeTextNuevoPassword').html("Contraseña no valida.");
+                $("#MensajeTextNuevoPassword").show();
+            }
+        });
+    });
+
+    function isValidFomr() {
+        var result = false;
+
+        // Obtener el valor actual del input
+        var password = $('#RepetirPassword').val();
+
+        // Validar la contraseña utilizando expresiones regulares
+        var regexLength = /.{8,}/; // Mínimo 8 caracteres
+        var regexLettersNumbers = /^(?=.*[a-zA-Z])(?=.*[0-9])/; // Letras y números
+        var regexSequences = /^(?!.*(?:1234|ABCD)).*$/; // No incluir secuencias
+        var regexConsecutiveChars = /^(?!.*(\w)\1).*$/; // No caracteres repetidos consecutivos
+
+        $('#NuevoPassword').css("border", "1px solid #d9dee3");
+        $('#RepetirPassword').css("border", "1px solid #d9dee3");
+        $("#MensajeTextNuevoPassword").css("display", "none");
+        $("#MensajeTextRepetirPassword").css("display", "none");
+
+        if ($('#NuevoPassword').val().length == 0) {
+            $('#NuevoPassword').css("border", "2px solid #ff0049");
+            $('#MensajeTextNuevoPassword').html("Este dato es obligatorio.");
+            $("#MensajeTextNuevoPassword").show();
+        }
+
+        if ($('#RepetirPassword').val().length == 0) {
+            $('#RepetirPassword').css("border", "2px solid #ff0049");
+            $('#MensajeTextRepetirPassword').html("Este dato es obligatorio.");
+            $("#MensajeTextRepetirPassword").show();
+        }
+
+        
+        if ($('#NuevoPassword').val().length > 0) {
+            if ($('#RepetirPassword').val().length > 0) {
+                if (!regexLength.test(password)) {
+                    if (!regexLettersNumbers.test(password)) {
+                        if (!regexSequences.test(password)) {
+                            if (!regexConsecutiveChars.test(password)) {
+                                if (BuscarNombre(password)) {
+                                    if (BuscarEmail(password)) {
+                                        result = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
+        }
+       
+        if ($('#NuevoPassword').val().length > 0) {
+            if ($('#NuevoPassword').val() == $('#RepetirPassword').val()) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    function BuscarEmail(password) {
+        var result = false;
+        var texto = password;
+        var EmailBuscada = "@ViewBag.NuevoUsuario.Email.email";
+
+        texto = texto.toLowerCase();
+        EmailBuscada = EmailBuscada.toLowerCase();
+
+        var posicion1 = texto.indexOf(EmailBuscada);
+        if (posicion1 !== -1) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    function BuscarNombre(password) {
+
+        var result = false;
+        var texto = password;
+        var NombreBuscada = "@ViewBag.NuevoUsuario.Persona.Nombre";
+        var ApellidoPBuscada = "@ViewBag.NuevoUsuario.Persona.ApellidoPaterno";
+        var ApellidoMBuscada = "@ViewBag.NuevoUsuario.Persona.ApellidoMaterno";
+
+        texto = texto.toLowerCase();
+        NombreBuscada = NombreBuscada.toLowerCase();
+        ApellidoPBuscada = ApellidoPBuscada.toLowerCase();
+        ApellidoMBuscada = ApellidoMBuscada.toLowerCase();
+
+        var posicion1 = texto.indexOf(NombreBuscada);
+        if (posicion1 !== -1) {
+            result = true;
+        }
+
+        var posicion2 = texto.indexOf(ApellidoPBuscada);
+        if (posicion2 !== -1) {
+            result = true;
+        }
+
+        if (ApellidoMBuscada.length > 0) {
+            var posicion3 = texto.indexOf(ApellidoMBuscada);
+            if (posicion3 !== -1) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+</script>

@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "NombreValidacion";
+    Layout = "~/Views/Shared/_Layout_Registro.cshtml";
+}
+
+<style>
+    .login-block .auth-box {
+        margin: 20px auto 0 auto;
+        max-width: 600px;
+    }
+    .card .card-block {
+        padding: 70px;
+    }
+
+    @@media(max-width: 767px) {
+        .icono {
+            width: 35%;
+            margin-left: 30%;
+        }
+    }
+
+
+</style>
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+
+                <form class="" id="FormularioNuevoUsuario">
+                    <div class="text-center">
+                        <img src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                    </div>
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="icono col-md-2 text-center">
+                                    <img src="~/images/icons/1611707.png" alt="logo.png" width="100%">
+                                </div>
+                                <div class="col-md-10">
+                                    <h3 class="text-center" style="font-size: 23px;">Elige como quieres que te llamemos </h3>
+                                    <h3 class="text-center" style="font-size: 14px; font-weight: 300; padding-top: 15px; ">Verán el nombre que elijas todas las personas que interactúen contigo.<br /><br /></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Nombre </label>
+                                        <input type="text" class="form-control input-mayusculas" id="Nombre" onchange="ValidaInput('Nombre')" placeholder="Nombre">
+                                        <label id="MensajeTextNombre" class="text-danger" style="display: none;"> </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Apellido paterno  </label>
+                                        <input type="text" class="form-control input-mayusculas" id="ApellidoPaterno" onchange="ValidaInput('ApellidoPaterno')" placeholder="Apellido paterno">
+                                        <label id="MensajeTextApellidoPaterno" class="text-danger" style="display: none;"> </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label> Apellido materno  </label>
+                                        <input type="text" class="form-control input-mayusculas" id="ApellidoMaterno" onchange="ValidaInput('ApellidoMaterno')" placeholder="Apellido materno">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center" id="BtnRegistarNombre"> Continuar  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#FormularioNuevoUsuario").on("submit", function (event) {
+            // Prevenir el envío del formulario por defecto
+            event.preventDefault();
+
+            if (isValidFomr()) {
+
+                $('#BtnRegistarNombre').prop('disabled', false);
+
+                var obj = {};
+
+                obj['Nombre'] = $('#Nombre').val();;
+                obj['ApellidoPaterno'] = $('#ApellidoPaterno').val();;
+                obj['ApellidoMaterno'] = $('#ApellidoMaterno').val();;
+
+                var jsonObject = {
+                    "Persona": obj
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("NuevoUsuario_Nombre", "Registro")",
+                    async: false,
+                    data: JSON.stringify(jsonObject),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        switch (data.Id) {
+                            case 1:
+                                    swal({
+                                        title: "Operación denegada.",
+                                        text: "Debes de aceptar los términos y condiciones.",
+                                        imageUrl: "../images/icons/7353427.png",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Aceptar",
+                                        closeOnConfirm: false,
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = '@Url.Action("TerminosCondiciones", "Registro")';
+                                        }
+                                    });
+                                break;
+                            case 2:
+                                    window.location.href = '@Url.Action("NombreVerificado", "Registro")';
+                                break;
+                            default:
+
+                                break;
+                        }
+                    },
+                    error: function () {
+                        swal({
+                            title:"Problemas de conexión",
+                            text: "Inténtelo mas tarde.",
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+                        $('#BtnRegistarNombre').prop('disabled', true);
+                    }
+                });
+            }
+        });
+
+        $(".input-mayusculas").on("input", function () {
+            // Obtener el valor actual del input
+            var textoActual = $(this).val();
+
+            // Filtrar caracteres no permitidos (en este caso, números)
+            var textoFiltrado = textoActual.replace(/[0-9]/g, '');
+
+            // Convertir el texto a mayúsculas
+            var textoMayusculas = textoFiltrado.toUpperCase();
+
+            // Verificar si el valor ha cambiado antes de actualizar el input
+            // Esto evita que se cree un ciclo infinito en algunos navegadores
+            if (textoActual !== textoMayusculas) {
+                // Actualizar el valor del input con el texto en mayúsculas y sin números
+                $(this).val(textoMayusculas);
+            }
+        });
+
+        // Asociar evento 'keypress' a los inputs con la clase "input-mayusculas"
+        // para evitar la entrada de números
+        $(".input-mayusculas").on("keypress", function (event) {
+            var charCode = event.which ? event.which : event.keyCode;
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    function isValidFomr() {
+        var result = false;
+
+        $('#Nombre').css("border", "1px solid #d9dee3");
+        $('#ApellidoPaterno').css("border", "1px solid #d9dee3");
+
+        if ($('#Nombre').val().length == 0) {
+            $('#Nombre').css("border", "2px solid #ff0049");
+            $('#MensajeTextNombre').html("Este dato es obligatorio.");
+            $("#MensajeTextNombre").show();
+        }
+
+        if ($('#ApellidoPaterno').val().length == 0) {
+            $('#ApellidoPaterno').css("border", "2px solid #ff0049");
+            $('#MensajeTextApellidoPaterno').html("Este dato es obligatorio.");
+            $("#MensajeTextApellidoPaterno").show();
+        }
+
+        if ($('#Nombre').val().length > 0) {
+            if ($('#ApellidoPaterno').val().length > 0) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+</script>

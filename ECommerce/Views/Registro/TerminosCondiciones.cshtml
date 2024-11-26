@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "TerminosCondiciones";
+    Layout = "~/Views/Shared/_Layout_Registro.cshtml";
+}
+<style>
+    @@media(max-width: 767px) {
+        .logoS {
+            width: 20%;
+        }
+        .logoI {
+            width: 15%;
+            float: right;
+        }
+    }
+    @@media(max-width: 403px) {
+        .logoS {
+            width: 25%;
+        }
+
+        .logoI {
+            width: 20%;
+            float: right;
+        }
+    }
+    
+    
+</style>
+
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+
+                <form class="">
+                    <div class="text-center">
+                        <img class="logoS" src="~/images/icons/CSB_Mexico.png" alt="logo.png" width="10%" onclick="Redirecionar()">
+                    </div>
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="~/images/icons/3789946.png" alt="logo.png" width="40%">
+                                </div>
+                                <div class="col-md-12">
+                                    <br /><br />
+                                    <h3 class="text-center" style="font-size: 23px;">Para crear tu cuenta te pediremos algunos datos</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="text-center" style="font-size: 17px; font-weight: 300; padding-top: 15px; ">Solo te tomará unos minutos.</h3>
+                                </div>
+                            </div>
+                            <div class="row m-t-30">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms">
+                                        <label class="form-check-label" for="terms-conditions">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">
+                                                    Acepto los
+                                                </font>
+                                            </font>
+                                            <a href="javascript:void(0);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; color: #FF5722"> Términos y condiciones </font></font></a>
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">
+                                                    y autorizo el uso de mis datos de acuerdo a la
+                                                </font>
+                                            </font>
+                                            <a href="javascript:void(0);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; color: #FF5722"> Declaración de Privacidad </font></font></a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center" id="BtnCrearCuenta"> Crear una cuenta  </button>
+                                </div>
+                            </div>
+
+                            <div class="row m-t-20">
+                                <div class="col-md-9">
+                                    <p class="text-inverse text-center">
+                                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size:13px"><strong>¿Ya tienes una cuenta?</strong> </font></font></span>
+                                        <font style="vertical-align: inherit;"><a href="@Url.Action("Index", "Adm")"><span><font style="vertical-align: inherit; color: #FF5722">Iniciar sesión en su lugar</font></span></a></font><a href="auth-login-basic.html">
+                                            <span><font style="vertical-align: inherit;"></font></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="logoI" src="~/images/icons/CSB_Mexico.png" alt="small-logo.png" onclick="Redirecionar()" width="100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/sweetalert/sweetalert.min.js"></script>
+<script>
+    $('#BtnCrearCuenta').click(function () {
+        if (!$('#terms-conditions').is(':checked')) {
+            swal({
+                title: "Algo ocurrió !",
+                text: "Debes aceptar los términos y condiciones.",
+                icon: "warning",
+                button: "Aceptar",
+            });
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("NuevoUsuario_iniciar", "Registro")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.Id > 0) {
+                        window.location.href = '@Url.Action("Progreso", "Registro")?cont=' + data.token;
+                    }
+                },
+                error: function () {
+                    swal({
+                        title:"Problemas de conexión",
+                        text: "Inténtelo mas tarde.",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+

@@ -1,0 +1,161 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+<style>
+    .page-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+        text-align: left;
+        padding: 5px 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+
+        .pcoded .pcoded-navbar .pcoded-item > li.active > a > span > i {
+            color: #fff !important;
+        }
+    </style>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard</h5>
+                        <p class="m-b-0">Ecommerce casalbor </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="/Cliente"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Mis Pedidos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Mis Pedidos   </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <table class="table table-hover table-striped" id="TableListaVentas">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Folio </th>
+                                                        <th>Referencia </th>
+                                                        <th>Metodo de pago </th>
+                                                        <th>Estatus </th>
+                                                        <th>Importe </th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Folio </th>
+                                                        <th>Referencia </th>
+                                                        <th>Metodo de pago </th>
+                                                        <th>Estatus </th>
+                                                        <th>Importe </th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody class="table-border-bottom-0">
+                                                    @{
+                                                        if (ViewBag.ListVentas != null)
+                                                        {
+                                                            foreach (var item1 in ViewBag.ListVentas)
+                                                            {
+                                                                <tr>
+                                                                    <td onclick="MostrarVenta(@item1.Id)"><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong style="cursor: pointer;">@item1.Folio.FolioCompuesto</strong></td>
+                                                                    <td>@item1.Referencia</td>
+                                                                    <td>@item1.CatMetodoPago.Nombre</td>
+                                                                    <td>@item1.CatEstatusVenta.Nombre</td>
+                                                                    <td class="valor" style="text-align:right">@item1.TotalText</td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Page-body end -->
+            </div>
+            <div id="styleSelector"> </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/assets/js/jquery/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var tabla = $('#TableListaVentas').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "pageLength": 10,
+        });
+    });
+
+    function MostrarVenta(num) {
+       var obj = {};
+
+        obj['UrlVaible'] = num;
+
+        var jsonObject = {
+            "URL": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("URL_Cifrado", "URLS")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                window.location.href = '@Url.Action("RastrearPedido", "Cliente")?F=' + result.Url;
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+</script>
+<script>$('#IdMisPedidos').addClass("active");</script>
+

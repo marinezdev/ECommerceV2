@@ -1,0 +1,726 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+}
+<style>
+    .ov-btn-grow-skew {
+        background: #fff; /* color de fondo */
+        color: black !important; /* color de fuente */
+        border: 2px solid var(--c-principal); /* tamaño y color de borde */
+        padding: 6px 20px;
+        border-radius: 3px; /* redondear bordes */
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .ov-btn-grow-skew:hover {
+        color: whitesmoke !important; /* color de fuente hover */
+    }
+
+    .ov-btn-grow-skew::after {
+        content: "";
+        background: var(--c-principal); /* color de fondo hover */
+        position: absolute;
+        z-index: -1;
+        padding: 16px 20px;
+        display: block;
+        left: -20%;
+        right: -20%;
+        top: 0;
+        bottom: 0;
+        transform: skewX(-45deg) scale(0, 1);
+        transition: all 0.3s ease;
+    }
+
+    .ov-btn-grow-skew:hover::after {
+        transition: all 0.3s ease-out;
+        transform: skewX(-45deg) scale(1, 1);
+    }
+
+    .page-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+        text-align: left;
+        padding: 5px 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a > span > i {
+        color: #fff !important;
+    }
+
+
+   /*ESTILOS */
+
+
+    .pcoded-content {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: #888;
+        text-align: center; 
+        background-color: #e9ecef;
+    }
+
+    strong { font-weight: 500; }
+
+    a, a:hover, a:focus {
+	    color: #black;
+	    text-decoration: none;
+        -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+    }
+
+    h1, h2 {
+	    margin-top: 10px;
+	    font-size: 38px;
+        font-weight: 100;
+        color: #555;
+        line-height: 50px;
+    }
+
+    h3 {
+	    font-size: 22px;
+        font-weight: 300;
+        color: #555;
+        line-height: 30px;
+    }
+
+    h4 {
+	    font-size: 18px;
+        font-weight: 300;
+        color: #555;
+        line-height: 26px;
+    }
+
+    img { max-width: 100%; }
+
+    ::-moz-selection { background: #f35b3f; color: #fff; text-shadow: none; }
+    ::selection { background: #f35b3f; color: #fff; text-shadow: none; }
+
+
+/*    **** Top menu *****/
+
+    .navbar {
+	    padding-top: 10px;
+	    background: #333;
+	    background: rgba(51, 51, 51, 0.3);
+	    border: 0;
+	    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+    }
+    .navbar.navbar-no-bg { background: none; }
+
+    ul.navbar-nav {
+	    font-size: 16px;
+	    color: #fff;
+    }
+
+    .navbar-inverse ul.navbar-nav li { padding-top: 8px; padding-bottom: 8px; }
+
+    .navbar-inverse ul.navbar-nav li .li-text { opacity: 0.8; }
+
+    .navbar-inverse ul.navbar-nav li a { display: inline; padding: 0; color: #fff; }
+    .navbar-inverse ul.navbar-nav li a:hover { color: #fff; opacity: 1; border-bottom: 1px dotted #fff; }
+    .navbar-inverse ul.navbar-nav li a:focus { color: #fff; outline: 0; opacity: 1; border-bottom: 1px dotted #fff; }
+
+    .navbar-inverse ul.navbar-nav li .li-social a {
+	    margin: 0 5px;
+	    font-size: 28px;
+	    vertical-align: middle;
+    }
+    .navbar-inverse ul.navbar-nav li .li-social a:hover,
+    .navbar-inverse ul.navbar-nav li .li-social a:focus { border: 0; color: #f35b3f; }
+
+
+
+/*    **** Top content *****/
+
+    .top-content { padding: 0 0 50px 0; }
+
+    .top-content .text { color: #fff; }
+    .top-content .text h1 { color: #fff; }
+    .top-content .description { margin: 20px 0 10px 0; }
+    .top-content .description p { opacity: 0.8; }
+    .top-content .description a { color: #fff; }
+    .top-content .description a:hover,
+    .top-content .description a:focus { border-bottom: 1px dotted #fff; }
+
+    .form-box {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+
+    .f1 {
+	    padding: 0px; background: #fff;
+	    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    }
+    .f1 h3 { margin-top: 0; margin-bottom: 5px; text-transform: uppercase; }
+
+    .f1-steps { overflow: hidden; position: relative; margin-top: 20px; }
+
+    .f1-progress { position: absolute; top: 24px; left: 0; width: 100%; height: 5px; background: #ddd; }
+    .f1-progress-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5px;
+        background: var(--c-principal);
+    }
+
+    .f1-step { position: relative; float: left; width: 33.333333%; padding: 0 5px; }
+
+    .f1-step-icon {
+	    display: inline-block; width: 40px; height: 40px; margin-top: 4px; background: #ddd;
+	    font-size: 16px; color: #fff; line-height: 40px;
+	    -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+    }
+/*    Icono succes*/
+    .f1-step.activated .f1-step-icon {
+        background: var(--c-principal);
+        border: 1px solid var(--c-principal);
+        color: white;
+        line-height: 38px;
+    }
+    .f1-step.active .f1-step-icon {
+        width: 48px;
+        height: 48px;
+        margin-top: 0;
+        background: var(--c-principal);
+        font-size: 22px;
+        line-height: 48px;
+    }
+
+    .f1-step p { color: #ccc; }
+    .f1-step.activated p {
+        color: var(--c-principal);
+    }
+    .f1-step.active p {
+        color: var(--c-principal);
+    }
+
+    .f1 fieldset { display: none; text-align: left; }
+
+    .f1-buttons { text-align: right; }
+
+    .f1 .input-error { border-color: #f35b3f; }
+
+
+
+    /***** Media queries *****/
+
+    @@media (min-width: 992px) and (max-width: 1199px) {}
+
+    @@media (min-width: 768px) and (max-width: 991px) {}
+
+    @@media (max-width: 767px) {
+
+	    .navbar { padding-top: 0; }
+	    .navbar.navbar-no-bg { background: #333; background: rgba(51, 51, 51, 0.9); }
+	    .navbar-brand { height: 60px; margin-left: 15px; }
+	    .navbar-collapse { border: 0; }
+	    .navbar-toggle { margin-top: 12px; }
+
+	    .top-content { padding: 40px 0 110px 0; }
+
+    }
+
+    @@media (max-width: 415px) {
+
+	    h1, h2 { font-size: 32px; }
+
+	    .f1 { padding-bottom: 20px; }
+	    .f1-buttons button { margin-bottom: 5px; }
+
+    }
+
+
+    /* Retina-ize images/icons */
+
+    @@media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+
+    }
+
+
+</style>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 style="text-align:start" class="m-b-10">Dashboard</h5>
+                        <p style="text-align:start" class="m-b-0">Ecommerce casalbor </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="/Cliente"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li  class="breadcrumb-item">
+                            <a  href="#!">Datos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body ">
+                    <div class="row">
+
+                        <div class="col-sm-12 ">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div style="text-align:start" class="card-header">
+                                    <h5>Datos   </h5>
+                                </div>
+
+                                <div class="top-content ">
+                                    <div class="container">
+
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-sm-11  col-md-11 col-lg-11  form-box">
+                                                <form role="form" class="f1">
+
+                                                    <h3>Actualizar datos de cliente</h3>
+                                                    <div class="f1-steps">
+                                                        <div class="f1-progress">
+                                                            <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                                                        </div>
+                                                        <div class="f1-step active">
+                                                            <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                                                            <p>Usuario</p>
+                                                        </div>
+                                                        <div class="f1-step">
+                                                            <div class="f1-step-icon"><i class="fa fa-envelope"></i></div>
+                                                            <p>Contacto</p>
+                                                        </div>
+                                                        <div class="f1-step">
+                                                            <div class="f1-step-icon"><i class="fa fa-mobile"></i></div>
+                                                            <p>Teléfono</p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!--paso 1 -->
+                                                    <fieldset>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label>Nombre</label>
+                                                            <input type="text" name="f1-first-name" placeholder="Nombre" class="f1-first-name form-control" id="nombre" value="@ViewBag.User.Persona.Nombre">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Apellido Paterno</label>
+                                                            <input type="text" name="f1-last-name" placeholder="Apellido Paterno" class="f1-last-name form-control" id="Apaterno" value="@ViewBag.User.Persona.ApellidoPaterno">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Apellido Materno</label>
+                                                            <input type="text" name="f2-last-name" placeholder="Apellido Materno" class="f1-last-name form-control" id="Amaterno" value="@ViewBag.User.Persona.ApellidoMaterno">
+                                                        </div>
+                                                        @*<div class="form-group">
+                                                            <label>Descripción del Inmueble</label>
+                                                            <textarea name="f1-about-yourself" placeholder="Descripción del Inmueble" class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+                                                        </div>*@
+                                                        <div class="row">
+                                                            <div class="col-6 d-flex justify-content-start">
+                                                                <button onclick="ActualizaNombre();" type="button" class="btn ov-btn-grow-skew" id="actualizarname">Actualizar</button>
+                                                            </div>
+                                                            <div class="col-6 d-flex justify-content-end">
+                                                                <button type="button" class="btn btn-next ov-btn-grow-skew">Siguiente</button>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                    </fieldset>
+                                                    <!--fin del paso 1 -->
+                                                    <!---paso 2 -->
+                                                    <fieldset>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label>Correo electronico (Principal)</label>
+                                                            <input type="text" name="f1-email" placeholder="Correo del Propietario" class="f1-email form-control" id="f1-email" value="@ViewBag.User.Email.email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Correo electronico (Secundario)</label>
+                                                            <input type="text" name="f1-password" placeholder="Correo electronico" class="f1-password form-control"  value="No proporcionado">
+                                                        </div>
+                                                       
+
+                                                        <div class="row">
+                                                            <div class="col-6 d-flex justify-content-start">
+                                                                @*ActualizarEmail*@
+                                                                <button type="button" class="btn ov-btn-grow-skew" Onclick="EnviarVerificacion()" id="actualizaremail">Actualizar</button>
+                                                            </div>
+                                                            <div class="col-6 d-flex justify-content-end">
+                                                                <button type="button" class="btn btn-previous ov-btn-grow-skew mr-2">Atrás</button>
+                                                                <button type="button" class="btn btn-next ov-btn-grow-skew">Siguiente</button>
+                                                            </div>
+                                                        </div>
+
+                                                       
+                                                    </fieldset>
+                                                    <!--fin del paso 2 -->
+                                                    <!--paso fin -->
+                                                    <fieldset>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label>Teléfono fijo</label>
+                                                            <input type="text" name="f1-facebook" placeholder="Teléfono celular" class="f1-facebook form-control" value="7721210156">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Teléfono móvil</label>
+                                                            <input type="text" name="f1-twitter" placeholder="Teléfono fijo" class="f1-twitter form-control"  value="No proporcionado">
+                                                        </div>
+                                                        
+
+                                                        <div class="row">
+                                                            <div class="col-6 d-flex justify-content-start">
+                                                                <button type="button" class="btn ov-btn-grow-skew">Actualizar</button>
+                                                            </div>
+                                                            <div class="col-6 d-flex justify-content-end">
+                                                                <button type="button" class="btn btn-previous ov-btn-grow-skew">Atrás</button>
+                                                            </div>
+                                                        </div>
+                                                     
+                                                    </fieldset>
+                                                    <!--fin -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Page-body end -->
+            </div>
+            <div id="styleSelector"> </div>
+        </div>
+</div>
+
+<script src="~/assets/js/jquery/jquery.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/retina-1.1.0.min.js"></script>
+
+<script>
+    $('#IdMenuDatos').addClass("active");
+
+    function scroll_to_class(element_class, removed_height) {
+        var scroll_to = $(element_class).offset().top - removed_height;
+        if ($(window).scrollTop() != scroll_to) {
+            $('html, body').stop().animate({ scrollTop: scroll_to }, 0);
+        }
+    }
+
+    function bar_progress(progress_line_object, direction) {
+        var number_of_steps = progress_line_object.data('number-of-steps');
+        var now_value = progress_line_object.data('now-value');
+        var new_value = 0;
+        if (direction == 'right') {
+            new_value = now_value + (100 / number_of_steps);
+        }
+        else if (direction == 'left') {
+            new_value = now_value - (100 / number_of_steps);
+        }
+        progress_line_object.attr('style', 'width: ' + new_value + '%;').data('now-value', new_value);
+    }
+
+    jQuery(document).ready(function () {
+
+
+        $('#top-navbar-1').on('shown.bs.collapse', function () {
+            $.backstretch("resize");
+        });
+        $('#top-navbar-1').on('hidden.bs.collapse', function () {
+            $.backstretch("resize");
+        });
+
+        /*
+            Form
+        */
+        $('.f1 fieldset:first').fadeIn('slow');
+
+        $('.f1 input[type="text"], .f1 input[type="password"], .f1 textarea').on('focus', function () {
+            $(this).removeClass('input-error');
+        });
+
+        // next step
+        $('.f1 .btn-next').on('click', function () {
+            var parent_fieldset = $(this).parents('fieldset');
+            var next_step = true;
+            // navigation steps / progress steps
+            var current_active_step = $(this).parents('.f1').find('.f1-step.active');
+            var progress_line = $(this).parents('.f1').find('.f1-progress-line');
+
+            // fields validation
+            parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function () {
+                if ($(this).val() == "") {
+                    $(this).addClass('input-error');
+                    next_step = false;
+                }
+                else {
+                    $(this).removeClass('input-error');
+                }
+            });
+            // fields validation
+
+            if (next_step) {
+                parent_fieldset.fadeOut(400, function () {
+                    // change icons
+                    current_active_step.removeClass('active').addClass('activated').next().addClass('active');
+                    // progress bar
+                    bar_progress(progress_line, 'right');
+                    // show next step
+                    $(this).next().fadeIn();
+                    // scroll window to beginning of the form
+                    scroll_to_class($('.f1'), 20);
+                });
+            }
+
+        });
+
+        // previous step
+        $('.f1 .btn-previous').on('click', function () {
+            // navigation steps / progress steps
+            var current_active_step = $(this).parents('.f1').find('.f1-step.active');
+            var progress_line = $(this).parents('.f1').find('.f1-progress-line');
+
+            $(this).parents('fieldset').fadeOut(400, function () {
+                // change icons
+                current_active_step.removeClass('active').prev().removeClass('activated').addClass('active');
+                // progress bar
+                bar_progress(progress_line, 'left');
+                // show previous step
+                $(this).prev().fadeIn();
+                // scroll window to beginning of the form
+                scroll_to_class($('.f1'), 20);
+            });
+        });
+
+        // submit
+        $('.f1').on('submit', function (e) {
+
+            // fields validation
+            $(this).find('input[type="text"], input[type="password"], textarea').each(function () {
+                if ($(this).val() == "") {
+                    e.preventDefault();
+                    $(this).addClass('input-error');
+                }
+                else {
+                    $(this).removeClass('input-error');
+                }
+            });
+            // fields validation
+
+        });
+
+
+    });
+
+
+    function ActualizaNombre() {
+        $("#actualizarname").prop('disabled', true);
+        var Persona = new Object()
+        Persona.Nombre = $("#nombre").val();
+        Persona.ApellidoPaterno = $("#Apaterno").val();
+        Persona.ApellidoMaterno = $("#Amaterno").val();
+
+        var UsuarioInformacion = new Object();
+        UsuarioInformacion.Persona = Persona;
+
+
+         $.ajax({
+            type: "POST",
+            url: "@Url.Action("Administracion_UsuarioActualizarName", "Adm")",
+            async: false,
+            data: JSON.stringify(UsuarioInformacion),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                switch (data.Id) {
+                    case -1:
+                        $.notify({
+                            message: "Datos no actualizados"
+                        }, {
+                            type: 'danger',
+                            allow_dismiss: false,
+                            animate: {
+                                enter: 'animated rollIn',
+                                exit: 'animated rollOut'
+                            }
+                        });
+
+                        break;
+                    case 0:
+                        swal({
+                            title: "Algo ocurrió Datos no registrados !",
+                            text: '',
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+                        break;
+
+                    default:
+                    // code block
+                }
+                if (data.Id > 0) {
+                    swal({
+                        title: "Datos Actualizados. !",
+                        text: " ",
+                        icon: "success",
+                        button: "Aceptar",
+                    })
+                }
+            },
+            error: errores
+        });
+
+        $("#actualizarname").prop('disabled', false);
+
+    }
+
+   
+
+    function EnviarVerificacion() {
+        var correo = new Object()
+        correo.email = $("#f1-email").val();
+
+         $.ajax({
+            type: "POST",
+            url: "@Url.Action("EviarCodigoVerificacion", "Cliente")",
+            async: false,
+            data: JSON.stringify(correo),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                verificarEmail();
+            },
+            error: errores
+         });
+      
+    }
+
+    function verificarEmail() {
+        swal({
+            title: "Verificación de Correo",
+            text: "Hemos enviado un código a tu correo. Úsalo para continuar:",
+            icon: "info",
+            content: "input",
+            buttons: ["Cancelar", "Verificar"],
+            closeOnClickOutside: false,
+            dangerMode: true,
+        }).then((inputValue) => {
+            if (inputValue === null) { // Si se cancela
+                // No se hace nada, la alerta se cierra
+            } else if (inputValue === "123") { // Si el código es correcto
+                ActualizarEmail();
+            } else { // Si el código es incorrecto
+                swal("Código Incorrecto", "El código de verificación ingresado es incorrecto.", "error")
+                .then(() => {
+                   verificarEmail(); // Llamada recursiva para volver a solicitar el código
+                });}
+        });
+    }
+
+
+    function ActualizarEmail() {
+        $("#actualizaremail").prop('disabled', true);
+        var Email = new Object()
+        Email.email = $("#f1-email").val();
+
+        var UsuarioInformacion = new Object();
+        UsuarioInformacion.Email = Email;
+
+         $.ajax({
+            type: "POST",
+            url: "@Url.Action("Administracion_UsuarioActualizarCorreo", "Adm")",
+            async: false,
+            data: JSON.stringify(UsuarioInformacion),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                switch (data.Id) {
+                    case -1:
+                        $.notify({
+                            message: "Datos no actualizados"
+                        }, {
+                            type: 'danger',
+                            allow_dismiss: false,
+                            animate: {
+                                enter: 'animated rollIn',
+                                exit: 'animated rollOut'
+                            }
+                        });
+
+                        break;
+                    case 0:
+                        swal({
+                            title: "Algo ocurrió Datos no registrados !",
+                            text: '',
+                            icon: "warning",
+                            button: "Aceptar",
+                        });
+                        break;
+
+                    default:
+                    // code block
+                }
+                if (data.Id > 0) {
+                    swal({
+                        title: "Correo Actualizado",
+                        text: "¡Tu correo ha sido actualizado exitosamente!",
+                        icon: "success",
+                        button: "Aceptar",
+                    })
+                }
+            },
+            error: errores
+         });
+
+        $("#actualizaremail").prop('disabled', false);
+
+    }
+
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+</script>
+

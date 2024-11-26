@@ -1,0 +1,964 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <!--===============================================================================================-->
+    <link rel="shortcut icon" href="~/assets/images/icoCSB.png">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/assets/images/icoCSB.png" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.mCustomScrollbar.css">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+
+    <!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+        :root {
+            --c-principal: #b1ce69;
+        }
+
+        .card .card-header h5:after {
+            content: "";
+            background-color: #b1ce69 !important;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 20px;
+        }
+        .product-category {
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #8D99AE;
+        }
+
+        .product-widget .product-body .product-name {
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+            .product-widget .product-body .product-name > a {
+                font-weight: 700;
+            }
+
+        .right-top-bar a:hover {
+            color: #0f6069;
+        }
+
+        .top-bar {
+            height: 40px;
+            background: #9E9E9E;
+            background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);
+            background: linear-gradient(to right, #78a4b8, #b1cc69);
+        }
+
+        .topbar-mobile li {
+            height: 40px;
+            background: #9E9E9E;
+            background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);
+            background: linear-gradient(to right, #78a4b8, #b1cc69);
+        }
+
+        .icon-header-noti::after {
+            content: attr(data-notify);
+            font-family: "Proxima Nova",-apple-system,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+            font-size: 12px;
+            color: #fff;
+            line-height: 15px;
+            text-align: center;
+            display: block;
+            position: absolute;
+            top: -7px;
+            right: 0;
+            min-width: 15px;
+            height: 15px;
+            padding: 0 3px;
+            background-color: #afce68;
+        }
+
+        .bg6 {
+            background-color: background: #43cea2;
+            background: -webkit-linear-gradient(to right, #185a9d, #9C27B0);
+            background: linear-gradient(to right, #77a4b5, #b0cd68);
+        }
+
+        .bg1 {
+            background-color: #8BC34A;
+        }
+
+        .footer-links li i {
+            margin-right: 15px;
+            color: #8bc34a;
+            width: 14px;
+            text-align: center;
+        }
+
+        .product-btns > button:hover {
+            background-color: #E4E7ED;
+            color: #b0cd68;
+            border-radius: 50%;
+        }
+
+        .hov-btn3:hover {
+            border-color: #cbdd99 !important;
+            background-color: #b0cd68 !important;
+            color: #fff;
+        }
+
+        .btn-back-to-top {
+            display: none;
+            position: fixed;
+            width: 40px;
+            height: 38px;
+            bottom: 0px;
+            right: 40px;
+            background-color: #b1ce69;
+            opacity: 0.5;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+        }
+
+            .btn-back-to-top:hover {
+                opacity: 1;
+                background-color: #638906;
+            }
+
+        .main-menu > li:hover > a {
+            text-decoration: none;
+            color: #b0cd68;
+        }
+
+        a:hover, a:focus {
+            color: #b0cd68;
+            text-decoration: none;
+            outline: none;
+            /* background-color: #f9f9f9; */
+        }
+
+        .hov-cl1:hover {
+            color: #b0cd68;
+        }
+
+
+        /*TESTING*/
+        .pcoded #styleSelector {
+            min-height: 300px !important;
+            height: calc(100vh - 56px) !important;
+            border: 1px solid #e9e9e9 !important;
+            background: #FFF !important;
+            position: fixed !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            width: 245px !important;
+            z-index: 98 !important;
+            -webkit-transition: 0.5s !important;
+            transition: 0.5s !important;
+            left: -10px !important;
+            -o-transition: 0.5s !important;
+        }
+        .pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon {
+            font-size: 14px;
+            padding: 4px;
+            margin-right: 10px;
+            color: black;
+            border-radius: 4px;
+            width: 30px;
+            display: inline-block;
+            height: 30px;
+            text-align: center;
+        }
+
+        .main-menu .main-menu-header:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+        }
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+            background: linear-gradient(to right, #78a4b8, #78a4b8);
+            color: #fff !important;
+        }
+
+        .main-menu .main-menu-header:before {
+            content: "";
+            background: linear-gradient(to right, #79a4b6cc, #afcb6ac9)!important;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+/*        Ajuste de logo pantalla*/
+        @@media (min-width: 1200px){
+            .container {
+                max-width: 80% !important;
+            }
+        }
+
+
+        @@media (max-width: 991px) {
+            .estetic {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+<body class="animsition">
+
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                        <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;
+
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#!" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; Ayuda
+                        </a>
+
+                        <a href="@Url.Action("Index", "Adm")" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>  &nbsp; Mi cuenta
+                        </a>
+
+                        <a href="@Url.Action("Index", "RastreaPedidos")" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Sigue tus pedidos
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            MEX
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+
+                    <!-- Logo desktop -->
+                    <a href="/Tienda" class="logo">
+                        <img src="~/images/icons/Logo_Csb.png" />
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+
+                            <li id="Menu_Busqueda">
+                                <a href="@Url.Action("Index", "Store")">Tienda</a>
+                            </li>
+
+
+                            @*<li id="Menu_IniciarSesion">
+                                    <a href="#">Iniciar sesión  &nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="@Url.Action("Index", "Adm")">Iniciar sesión</a></li>
+                                        <li><a href="@Url.Action("TerminosCondiciones", "Registro")">Crear cuenta</a></li>
+                                    </ul>
+                                </li>
+
+                                <li id="Menu_Sesion" style="display: none;">
+                                    <a href="#">Hola <strong><span id="NombreUser"></span></strong> &nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="@Url.Action("Index", "MiCuenta")">Tu cuenta</a></li>
+                                        <li><a href="#" onclick="CerrarSesion();">Cerrar sesión </a></li>
+                                    </ul>
+                                </li>*@
+
+
+                        </ul>
+                    </div>
+
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+
+                        <a href="/CarroElectronico" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" id="BtCartShowp" @*onclick="MuestraCarrito()"*@ data-notify="0">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </a>
+
+                        <a href="#" id="BtIconsnInteres" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                        </a>
+
+                        <a href="#" id="BtIconsnInteres" class="icon-header-item" data-notify="0" onclick="CerrarSesion();">
+                            <i class="ti-power-off" style="margin-left: 14px;"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Header Mobile -->
+        <div class="wrap-header-mobile">
+            <!-- Logo moblie -->
+            <div class="logo-mobile">
+                <a href="/Tienda">
+                    <img src="~/images/icons/Logo_Csb.png" />
+                </a>
+            </div>
+
+            <!-- Button show menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <ul class="topbar-mobile">
+                <li>
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; Ayuda
+                        </a>
+
+                        <a href="@Url.Action("Index", "Adm")" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>  &nbsp; Mi cuenta
+                        </a>
+
+                        <a href="@Url.Action("Index", "RastreaPedidos")" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Sigue tus pedidos
+                        </a>
+
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            MEX
+                        </a>
+                        <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="main-menu-m">
+            </ul>
+        </div>
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+
+                    <img src="~/images/icons/icon-close2.png" alt="CERRAR" />
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15">
+                    <button class="flex-c-m trans-04">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" type="text" name="search" placeholder="Buscar ...">
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <p class="estetic">
+        <br />
+        <br />
+        <br />
+    </p>
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-header">
+                                    <img class="img-80 img-radius" src="~/assets/images/faq_man.png" alt="User-Profile-Image">
+                                    <div class="user-details">
+                                        @{
+                                            if (((ECommerce.Models.Usuario)System.Web.HttpContext.Current.Session["Sesion"]) != null)
+                                            {
+                                                <span id="more-details"> @(((ECommerce.Models.Usuario)System.Web.HttpContext.Current.Session["Sesion"]).Persona.Nombre + " " + ((ECommerce.Models.Usuario)System.Web.HttpContext.Current.Session["Sesion"]).Persona.ApellidoPaterno )<i class="fa fa-caret-down"></i></span>
+                                            }
+                                        }
+                                    </div>             
+                                </div>
+
+                                <div class="main-menu-content">             
+                                    <ul>
+                                        <li class="more-details">
+                                            @*<a href="user-profile.html"><i class="ti-user"></i>Ver perfil</a>
+                                                <a href="#!"><i class="ti-settings"></i>Ajustes</a>*@
+                                            <a href="#!" onclick="CerrarSesion();"><i class="ti-layout-sidebar-left"></i>Cerrar sesión</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">MENÚ DE NAVEGACIÓN </div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li id="IdMenuDashboard">
+                                    <a href="@Url.Action("Index", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Inicio</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">MI CUENTA </div>
+                            <ul class="menu pcoded-item pcoded-left-item">
+                                <li id="IdMenuDatos">
+                                    <a href="@Url.Action("Datos", "Cliente")" data-view="Seguridad" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"> <i class="ti-id-badge"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Datos  </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li id="IdMenuSeguridad">
+                                    <a href="@Url.Action("Seguridad", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-lock"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Seguridad  </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li id="IdMenuDirecciones">
+                                    <a href="@Url.Action("Direcciones", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-map-alt"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Direcciones   </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li id="IdMenuPrivacidad">
+                                    <a href="@Url.Action("Privacidad", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-shield"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Privacidad   </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">COMPRAS </div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li id="IdMisPedidos">
+                                    <a href="@Url.Action("MisPedidos", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-agenda"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Mis pedidos </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li id="IdBuscar">
+                                    <a href="@Url.Action("Buscar", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-search"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Buscar </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">CONFIGURACIÓN    </div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li id="IdMenuConfiguracion">
+                                    <a href="@Url.Action("Configuracion", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-settings"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Configuración   </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+
+
+
+
+
+
+
+
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+
+    <!--===================ACCIONES DE MENU SESION=====================================================-->
+    <script type="text/javascript" src="~/assets/js/script.js "></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <script>
+    $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })</script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/slick/slick.min.js"></script>
+    <script src="~/Scripts/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/parallax100/parallax100.js"></script>
+    <script>$('.parallax100').parallax100();</script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+    $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });</script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/isotope/isotope.pkgd.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/sweetalert/sweetalert.min.js"></script>
+    @*<script src="~/assets/js/bootstrap-notify.js"></script>*@
+
+    <script>
+    $('.js-addwish-b2').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        /*---------------------------------------------*/
+
+        $('.js-addcart-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to cart !", "success");
+            });
+        });</script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+    $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });</script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#timer2').hide(0);
+            $('#timer2').css('display', 'none');
+
+            $('#EnviarMensaeje2').click(function () {
+
+                var timeSlide = 1000;
+                $('#timer2').hide(0);
+                $('#timer2').css('display', 'none');
+
+                $( "#EnviarMensaeje2" ).attr("disabled", true);
+                $('.box-success2,.box-error2').slideUp(timeSlide);
+
+                setTimeout(function () {
+                    if (valida2() == "ok") {
+                        $('#timer2').fadeOut(300);
+                        $('#alertBoxes2').html('<div class="box-error2"></div>');
+                        $('.box-error2').hide(0).html("Enviado <img src='http://www.serviciosinmobiliariosg.com.mx/images/icons/ajax-loader.gif' width='20px' height='20px'/>");
+                        $('.box-error2').slideDown(timeSlide);
+
+                        var arreglo = [];
+                        var obj = {};
+
+                        obj['email'] = $('#email2').val();
+
+                        arreglo.push(obj);
+
+                        var jsonObject = {
+                            "Email": arreglo
+                        };
+
+                        //console.log(jsonObject);
+
+                        $.ajax({
+                            url: "@Url.Action("LlamarJsonEmail", "Email")",
+                            type: "POST",
+                            data: JSON.stringify(jsonObject),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            error: function (response) {
+                                $('#timer2').fadeOut(300);
+                                $('#alertBoxes2').html('<div class="box-error2"></div>');
+                                $('.box-error2').hide(0).html('Ha ocurrido un error durante la ejecución');
+                                $('.box-error2').slideDown(timeSlide);
+                                grecaptcha.reload();
+                                grecaptcha.reset();
+                            },
+                            success: function (response) {
+                                if (response == "ok") {
+
+                                    $('#alertBoxes2').html('<div class="box-success2"></div>');
+                                    $('.box-success2').hide(0).html('Envío éxitoso.');
+                                    $('.box-success2').slideDown(timeSlide);
+                                    $( "#EnviarMensaeje2" ).prop( "disabled", false );
+                                    window.setTimeout('location.reload()', 3000); //Reloads after three seconds
+
+                                    //window.location.reload(true);
+
+                                    //location.reload();
+
+                                } else {
+                                    $( "#EnviarMensaeje2" ).prop( "disabled", false );
+                                    $('#timer2').fadeOut(300);
+                                    $('#alertBoxes2').html('<div class="box-error2"></div>');
+                                    $('.box-error2').hide(0).html(response);
+                                    $('.box-error2').slideDown(timeSlide);
+                                    grecaptcha.reload();
+                                    grecaptcha.reset();
+
+                                }
+                            }
+                        });
+
+                    }
+                    else {
+                        $('#timer2').fadeOut(300);
+                        $('#alertBoxes2').html('<div class="box-error2"></div>');
+                        $('.box-error2').hide(0).html(valida2());
+                        $('.box-error2').slideDown(timeSlide);
+                        $("#EnviarMensaeje2").prop("disabled", false);
+
+                        $.notify({
+	                        icon: 'fa fa-paw',
+	                        message: "Formulario incompleto ."
+                        },{
+                                type: 'danger',
+                            allow_dismiss: false,
+                            animate: {
+		                        enter: 'animated rollIn',
+		                        exit: 'animated rollOut'
+	                        }
+                        });
+
+                    }
+                }, timeSlide);
+                return false;
+            });
+
+        });
+
+        function valida2() {
+            var respuesta = "";
+            $('#email2').css("border", "1px solid #64C0FF");
+
+            if ($('#email2').val().length > 0) {
+                if (Correo2() == "ok") {
+                    respuesta = "ok";
+                }else{
+                    $('#email2').css("border", "1px solid red");
+                    respuesta = "Coloca tu email correctamente";
+                }
+            } else {
+                $('#email2').css("border", "1px solid red");
+                respuesta = "Coloca tu email";
+            }
+
+            return respuesta;
+        };
+
+        @*$( document ).ready(function() {
+
+            $.ajax({
+                url: "@Url.Action("Carrito_Consultar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    $('#BtCartShowp').attr('data-notify', 0);
+                },
+                success: function (response) {
+                    $('#BtCartShowp').attr('data-notify', response.Total);
+                }
+            });
+
+        });*@
+
+        $( document ).ready(function() {
+            $.ajax({
+                url: "@Url.Action("CarroElectronico_Consultar_Total", "CarroElectronico")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    $('#BtCartShowp').attr('data-notify', 0);
+                },
+                success: function (response) {
+                    $('#BtCartShowp').attr('data-notify', response.Item);
+                }
+            });
+
+        });
+
+        function EliminarCarrito(Num) {
+
+             var obj = {};
+            obj['Id'] = Num;
+            var jsonObject = {
+                "Carro_Electronico": obj
+            };
+
+            $.ajax({
+                url: "@Url.Action("Eliminar_Articulo", "Store")",
+                type: "POST",
+               data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (Contenido) {
+                    alert("Mandar Mensaje de error");
+                },
+                success: function (Contenido) {
+                    MuestraCarrito();
+                }
+            });
+
+             $.ajax({
+                url: "@Url.Action("Carrito_Consultar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    $('#BtCartShowp').attr('data-notify', 0);
+                },
+                success: function (response) {
+                    $('#BtCartShowp').attr('data-notify', response.Total);
+                }
+             });
+
+        }
+
+        function MuestraCarrito() {
+            $.ajax({
+                url: "@Url.Action("Carrito_Listar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (Contenido) {
+                    alert("Mandar Mensaje de error");
+                },
+                success: function (Contenido) {
+                    $('#ContenidoCarrito').html('');
+                    var ContenidoCarrito = '';
+                    var precio = 0;
+                        for (var a = 0; a < Contenido.length; a++)
+                        {
+                    ContenidoCarrito += "<li class='header-cart-item flex-w flex-t m-b-12'>" +
+                                            "<div  class='header-cart-item-img' onclick='EliminarCarrito(" + Contenido[a].Id + ")'>" +
+                                                "<br><img src='https://" + Contenido[a].Imagen + "' alt=''>" +
+                                            "</div>" +
+                                            "<div class='header-cart-item-txt p-t-8'>" +
+                                                "<p class='product-category'>" + Contenido[a].Clasificacion + "</p>" +
+                                                "<a href='#' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>" +
+                                                    Contenido[a].Nombre +
+                                                "</a>" +
+                                                "<span class='header-cart-item-info'>" +
+                                                    Contenido[a].Item + " x " + Contenido[a].PrecioText +
+                                                "</span>" +
+                                            "</div>" +
+                                "</li>";
+
+                            precio += Contenido[a].Item * Contenido[a].Precio;
+                        }
+
+
+                    $('#ContenidoCarrito').html(ContenidoCarrito);
+                    $('#TotalText').text('$' + commaSeparateNumber(Number.parseFloat(precio).toFixed(2)));
+                    $('#BtCartShowp').attr('data-notify', Contenido.length);
+                    //console.log(response);
+                }
+            });
+        }
+
+
+        function commaSeparateNumber(val) { while (/(\d+)(\d{3})/.test(val.toString())) { val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2'); } return val; }
+
+        $(document).ready(function () {
+            $("#Menu_IniciarSesion").css("display", "none");
+            $("#Menu_Sesion").css("display", "none");
+
+            $.ajax({
+                url: "@Url.Action("ConsultarUsuario", "Adm")",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (data) {
+                    //console.log(data);
+                    $("#Menu_IniciarSesion").show();
+                },
+                success: function (data) {
+                    //console.log(data);
+                    if (data == null) {
+                        $("#Menu_IniciarSesion").show();
+                    }else if (data.Session) {
+                        $("#Menu_Sesion").show();
+                        $('#NombreUser').text(data.Nombre);
+                    } else {
+                        $("#Menu_IniciarSesion").show();
+                    }
+                }
+            });
+        });
+
+        function CerrarSesion() {
+            swal({
+              title: "Confirmación de cierre de sesión",
+              text: "Deseas cerrar tu sesión!",
+              icon: "warning",
+              buttons: true,
+                dangerMode: true,
+              buttons: ["Cancelar", "Aceptar"],
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("CerrarSesion", "Adm")",
+                        type: "POST",
+                        data: '',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        error: function (response) {
+                            swal({
+                                title: "Algo ocurrió !",
+                                text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                                icon: "warning",
+                                button: "Aceptar",
+                            });
+                        },
+                        success: function (response) {
+                            if (response.IdRol != 0) {
+                                window.location.href = "@Url.Action("Index", "Adm")";
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>

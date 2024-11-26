@@ -1,0 +1,434 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/assets/galeria/css/slick-theme.css" rel="stylesheet" />
+<link href="~/assets/galeria/css/slick.css" rel="stylesheet" />
+<link href="~/assets/galeria/css/style.css" rel="stylesheet" />
+@*<link href="~/assets/galeria/css/style.css" rel="stylesheet" />*@
+<style>
+    .store-sort {
+        display: inline-block;
+        width: 70%;
+    }
+
+    .input-select {
+    padding: 0px 10px;
+    background: #FFF;
+    border: 0px solid #E4E7ED;
+    height: 35px;
+}
+
+    .product .product-body .product-name {
+        text-transform: initial;
+        font-size: 14px;
+        color: #6c6c6c;
+    }
+
+
+    .product-btns > button {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product-label > span.new {
+        background: linear-gradient(to right, #77a4b5, #b1cd69);
+        border-color: #f8f9fa;
+        color: #ffffff;
+        border-radius: 4px;
+    }
+
+    .store-grid li.active {
+        background-color: #b0cd68;
+        border-color: #cbdd99;
+        color: #FFF;
+        cursor: default;
+    }
+
+    .store-pagination li.active {
+        background-color: #afce68;
+        border-color: #cbdd9a;
+        color: #FFF;
+        font-weight: 500;
+        cursor: default;
+    }
+
+    .product .add-to-cart {
+        position: absolute;
+        left: 1px;
+        right: 1px;
+        bottom: 1px;
+        padding: 15px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #b0cd68;
+        background: #360033;
+        background: -webkit-linear-gradient(to right, #360033, #0b8793);
+        background: linear-gradient(to right, #9e9e9e54, #46b53f63);
+        text-align: center;
+        -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        z-index: 2;
+        border-radius: 0px 0px 5px 5px;
+        -moz-border-radius: 0px 0px 5px 5px;
+        -webkit-border-radius: 0px 0px 5px 5px;
+    }
+    .product .add-to-cart .add-to-cart-btn {
+        position: relative;
+        border: 2px solid transparent;
+        height: 40px px;
+        padding: 0 30px;
+        background-color: #afce68;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 40px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product .add-to-cart .add-to-cart-btn:hover {
+        background-color: #FFF;
+        color: #b0cd68;
+        border-color: #b0cd68;
+        padding: 0px 30px 0px 50px;
+    }
+    .product .add-to-cart .add-to-cart-btn > i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px px;
+        height: 40px;
+        line-height: 38px;
+        color: #b0cd68;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .product:hover {
+        -webkit-box-shadow: 0px 0px 6px 0px #e3e3e3, 0px 0px 0px 2px #2196F3;
+        box-shadow: 2px 1px 6px 3px #e3e3e3, 1px 1px 1px 2px #b0cd68;
+    }
+    a:hover, a:focus {
+        color: #b0cd68;
+        text-decoration: none;
+        outline: none;
+        /* background-color: #f9f9f9; */
+    }
+
+    .product-widget .product-body .product-price {
+        font-size: 14px;
+        color: #b0cc69;
+    }
+
+
+    @@media (max-width: 991px) {
+        .estetic {
+            display: none;
+        }
+    }
+</style>
+
+
+<p class="estetic">
+    <br />
+    <br />
+    <br />
+</p>
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-lr-0-lg">
+            <a href="@Url.Action("Index", "Tienda")" class="stext-109 ">
+                Inicio
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+            <a href="@Url.Action("Index", "Store")" class="stext-109 ">
+                Tienda
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+            @*<span>
+                contenido html URL
+            </span>*@
+        </div>
+        <hr>
+        <div class="row">
+            <div id="aside" class="col-md-2">
+                <div class="aside">
+                    <h3 class="aside-title">Categorías </h3>
+                    @{
+                        if (ViewBag.SubCategorias != null)
+                        {
+                            foreach (var Dat in ViewBag.SubCategorias)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" id="category-@Dat.CatSubcategoria.Id" onclick="ActualizarBusqueda()">
+                                    <label for="category-@Dat.CatSubcategoria.Id" style="font-size: 12px;">
+                                        <span></span>
+                                        @Dat.CatSubcategoria.Nombre
+                                        <small>(@Dat.CatSubcategoria.Total)</small>
+                                    </label>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+                <div class="aside">
+                    <h3 class="aside-title">Precio </h3>
+                    <div class="price-filter">
+                        <div id="price-slider">Minimo - Maximo</div>
+                        <div class="input-number price-min">
+                            <input id="price-min" type="number" onchange="ActualizarBusqueda()">
+                            <span class="qty-up">+</span>
+                            <span class="qty-down">-</span>
+                        </div>
+                        <span>-</span>
+                        <div class="input-number price-max">
+                            <input id="price-max" type="number" onchange="ActualizarBusqueda()">
+                            <span class="qty-up">+</span>
+                            <span class="qty-down">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="aside">
+                    <h3 class="aside-title">ÚLTIMOS ARTÍCULOS</h3>
+                    @{
+                        if (ViewBag.UltimosArticulos != null)
+                        {
+                            foreach (var Dat in ViewBag.UltimosArticulos)
+                            {
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="https://@Dat.ArticuloImagen.ImagenURL" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@Dat.CatClasificacion.Nombre</p>
+                                        <h3 class="product-name"><a href="#" onclick="ConsultaArticulo(@Dat.Articulo.Id)">@Dat.ArticuloDetalle.Nombre</a></h3>
+                                        <h4 class="product-price">@Dat.PrecioPublicoText @Dat.ArticuloDetalle.CatMoneda.Nombre </h4>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            
+            <!-- STORE -->
+            <div id="store" class="col-md-10">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <div class="row">
+                            <label style="border-right: 1px solid #e5e5e5;">
+                                Ordenar por:
+                                <select class="input-select">
+                                    <option value="0">Popular </option>
+                                    <option value="1">Posición </option>
+                                </select> &nbsp;
+                            </label>
+                            <label style="border-right: 1px solid #e5e5e5;">
+                                Mostrar :
+                                <select class="input-select">
+                                    <option value="0">20</option>
+                                    <option value="1">50</option>
+                                    <option value="1">100</option>
+                                </select> &nbsp;
+                            </label>
+                            <label style="border-right: 1px solid #e5e5e5;">
+                                Columnas :
+                                <select class="input-select">
+                                    <option value="0">4</option>
+                                    <option value="1">3</option>
+                                </select> &nbsp;
+                            </label>
+                        </div>
+                    </div>
+                    <ul class="store-grid">
+                        <li class="active"><i class="fa fa-th"></i></li>
+                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                    </ul>
+                </div>
+                <!-- store products -->
+                <div class="row" id="ArticulosContenido">
+                    @{
+                        if (ViewBag.Articulos != null)
+                        { 
+                            foreach (var Dat in ViewBag.Articulos)
+                            {
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="https://@Dat.ArticuloImagen.ImagenURL" onclick="ConsultaArticulo(@Dat.Articulo.Id)" />
+                                            <div class="product-label">
+                                                <div class="product-btns">
+                                                    <button class="add-to-wishlist" onclick="Interes(@Dat.Articulo.Id);"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir interés </span></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="product-body" onclick="ConsultaArticulo(@Dat.Articulo.Id)">
+                                            <div class="product-label text-right">
+                                                @*<span class="sale">-30%</span>*@
+                                                <span class="new">NUEVO  </span>
+                                            </div>
+                                            <br />
+                                            <p class="product-category">@Dat.CatClasificacion.Nombre</p>
+                                            <h3 class="product-name"><a href="#" style="color:#6c6c6c;">@Dat.ArticuloDetalle.Nombre</a></h3>
+
+
+                                            <h4 class="product-price" style="color: #b0cd68">@Dat.PrecioPublicoText  <span style="font-size:12px;"> @Dat.ArticuloDetalle.CatMoneda.Nombre</span> </h4>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn" type="submit" onclick="AgregarCarrito(@Dat.Articulo.Id);">
+                                                <i class="fa fa-shopping-cart"></i> Comprar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+                <!-- store bottom filter -->
+                <div class="store-filter clearfix">
+                    <span class="store-qty">
+                        MOSTRANDO 20-100 PRODUCTOS
+                    </span>
+                    <ul class="store-pagination">
+                        <li class="active">1</li>
+                        @*<li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>*@
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /store bottom filter -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- /SECTION -->
+<div class="bg6 flex-c-m flex-w size-302 m-t-5 p-tb-15">
+    <span class="stext-107 cl6 p-lr-25">
+
+    </span>
+
+    <span class="stext-107 cl6 p-lr-25">
+
+    </span>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="~/vendor/imagezoom/imagezoom.js"></script>
+<script src="~/assets/galeria/js/jquery.min.js"></script>
+<script src="~/assets/galeria/js/slick.min.js"></script>
+<script src="~/assets/galeria/js/main.js"></script>
+<script src="~/assets/js/bootstrap-notify.js"></script>
+
+<script>
+
+    function ConsultaArticulo(num) {
+
+        var obj = {};
+
+        obj['UrlVaible'] = num;
+
+        var jsonObject = {
+            "URL": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("URL_Cifrado", "URLS")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                window.location.href = '@Url.Action("ArticuloDetalle", "Store")?Arti=' + result.Url;
+            },
+            error: function () {
+
+            }
+        });
+
+
+    }
+
+    function Interes(num) {
+       /* alert(num);*/
+    }
+
+
+    function AgregarCarrito(IdArticulo)
+    {
+        var Articulo = new Object();
+        Articulo.Id = IdArticulo;
+
+        var CarroElectronico = new Object();
+        CarroElectronico.Articulo = Articulo;
+        CarroElectronico.Item = 1;
+
+        $.ajax({
+            url: "@Url.Action("CarroElectronico_Agregar", "CarroElectronico")",
+            type: "POST",
+            data: JSON.stringify(CarroElectronico),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function () {
+                swal({
+                    title: "Algo ocurrió !",
+                    text: "Intentelo mas tarde",
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+            },
+            success: function (response) {
+                if (response.Id > 0) {
+                    swal({
+                        title: "Articulo agregado !",
+                        icon: "success",
+                        button: "Aceptar",
+                    });
+                    $('#BtCartShowp').attr('data-notify', response.Item);
+                }
+                else {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: "Articulo no registrado",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            }
+        });
+    }
+
+
+</script>

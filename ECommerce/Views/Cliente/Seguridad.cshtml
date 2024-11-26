@@ -1,0 +1,485 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+}
+
+
+<style>
+    .ov-btn-grow-skew {
+        background: #fff; /* color de fondo */
+        color: black !important; /* color de fuente */
+        border: 2px solid var(--c-principal); /* tamaño y color de borde */
+        padding: 6px 20px;
+        border-radius: 3px; /* redondear bordes */
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        display: inline-block;
+        cursor:pointer;
+    }
+
+    .ov-btn-grow-skew:hover {
+        color: whitesmoke !important; /* color de fuente hover */
+    }
+
+    .ov-btn-grow-skew::after {
+        content: "";
+        background: var(--c-principal); /* color de fondo hover */
+        position: absolute;
+        z-index: -1;
+        padding: 16px 20px;
+        display: block;
+        left: -20%;
+        right: -20%;
+        top: 0;
+        bottom: 0;
+        transform: skewX(-45deg) scale(0, 1);
+        transition: all 0.3s ease;
+    }
+
+    .ov-btn-grow-skew:hover::after {
+        transition: all 0.3s ease-out;
+        transform: skewX(-45deg) scale(1, 1);
+    }
+    .fa-check {
+        color: #b1ce69;
+    }
+
+    .page-header:before {
+        background: linear-gradient(to right, #79a4b6cc, #afcb6ac9);
+    }
+
+    .pcoded .pcoded-navbar .pcoded-item > li.active > a {
+        background: linear-gradient(to right, #78a4b8, #78a4b8);
+        color: #fff !important;
+        text-align: left;
+        padding: 5px 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+
+        .pcoded .pcoded-navbar .pcoded-item > li.active > a > span > i {
+            color: #fff !important;
+        }
+</style>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard</h5>
+                        <p class="m-b-0">Ecommerce casalbor </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="/Cliente"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Seguridad</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pcoded-inner-content  d-flex align-items-center justify-content-center" id="formulario">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Seguridad </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                            <div class="p-15">
+                                <!-- Mensajes de Verificación -->
+                                <div id="error" class="alert alert-danger" role="alert" style="display:none">
+                                    Las Contraseñas no coinciden, vuelve a intentar !
+                                </div>
+                                <div id="mensaje" class="alert alert-info" role="alert" style="display:block">
+                                    Usa la nueva contraseña para iniciar sesión la proxima vez.
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="largeInput">*Nueva Contraseña</label>
+                                            <input type="password" class="form-control" id="contrasenia" placeholder="Inserta tu nueva contraseña">
+                                            <span class="show-pass" onclick="togglePasswordVisibility()" style="position:absolute;top:14%;right:8%">
+                                                <i class="fa fa-eye-slash"></i>
+                                            </span>
+
+                                            <br />
+                                            <div id="popover-pass">
+                                                <p style="display:none"><span id="result"></span></p>
+                                                <div class="progress">
+                                                    <div id="password-strenght" class="progress-bar"
+                                                         role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100"
+                                                         style="width:0%">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="m-0 vh-100 row justify-content-center align-items-center">
+                                                <span id="estado1"><strong>Favor de ingresar la nueva contraseña</strong></span>
+                                                <span style="margin-top:5px" id="estado2" class="label label-danger m-t--10"><strong>Seguridad: Débil</strong></span>
+                                                <span style="margin-top:5px" id="estado3" class="label label-warning"><strong>Seguridad: Buena</strong></span>
+                                                <span style="margin-top:5px" id="estado4" class="label label-success"><strong>Seguridad: Fuerte</strong></span>
+                                            </div>
+
+                                            <hr />
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <span class="low-upper-case">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        Minusculas y Mayusculas
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="one-number">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        Numeros(0-9)
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="one-special-char">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        Caracteres especiales(!@@#$^&*)
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="eight-character">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        Mayor a 8 caracteres
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="largeInput">* Confirma Contraseña </label>
+                                            <input type="password" class="form-control" id="contrasenia2" placeholder="Repite tu contraseña" onblur="validatepass()">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 offset-md-4">
+                                        <button class="ov-btn-grow-skew" onclick="Registrar()" id="registar">Actualizar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Page-body end -->
+            </div>
+            <div id="styleSelector"> </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/assets/js/jquery/jquery.min.js"></script>
+<script>
+    $('#IdMenuSeguridad').addClass("active");
+
+    function Registrar() {
+        if (Valida()) {
+            if (validatepass()) {
+                if (passecure()) {
+
+                    $("#registar").prop('disabled', true);
+
+                    var usuario = new Object()
+                    usuario.Password = $("#contrasenia").val();
+
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Administracion_UsuarioActualizarPass", "Adm")",
+                        async: false,
+                        data: JSON.stringify(usuario),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+
+                            swal({
+                                title: "Información actualizada !!",
+                                text: "La proxima vez inicia sesión con esta contraseña",
+                                icon: "success",
+                                button: "Aceptar",
+                            }).then((value) => {
+                                window.location.href = '@Url.Action("Index", "Cliente")';
+                            });
+
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+
+                    $("#registar").prop('disabled', false);
+                } else {
+                    swal({
+                        title: "Error Contraseña.",
+                        text: 'Verifica que tu contraseña sea segura',
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            } else {
+                swal({
+                    title: "Error Contraseña.",
+                    text: 'Verifica que tu contraseña sea la misma',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+            }
+        }else {
+            swal({
+                title: "INFORMACIÓN INCOMPLETA.",
+                text: 'Proporciona los datos marcados en rojo',
+                icon: "warning",
+                button: "Aceptar",
+            });
+        }
+    }
+    function validatepass() {
+        pass1 = document.getElementById('contrasenia');
+        pass2 = document.getElementById('contrasenia2');
+
+        if (pass1.value != pass2.value) {
+            $("#error").css("display", "block");
+            $("#mensaje").css("display", "none");
+            return false;
+        } else {
+            $("#error").css("display", "none");
+            $("#mensaje").css("display", "block");
+            return true;
+        }
+    }
+    function Valida() {
+
+        var result = false;
+
+
+        $('#contrasenia').css("border", "1px solid #ff0049");
+        $('#contrasenia2').css("border", "1px solid #ff0049");
+
+        if ($('#contrasenia').val().length > 0) {
+            $('#contrasenia').css("border", "1px solid #cccccc");
+        }
+        if ($('#contrasenia2').val().length > 0) {
+            $('#contrasenia2').css("border", "1px solid #cccccc");
+        }
+
+
+        if ($('#contrasenia').val().length > 0) {
+            if ($('#contrasenia2').val().length > 0) {
+                                result = true;
+            }
+        }
+
+        return result;
+    }
+
+
+    let state = false;
+    let passwor = document.getElementById('contrasenia');
+    let passwordStrenght = document.getElementById('password-strenght');
+    let lowerUperCase = document.querySelector('.low-upper-case i');
+    let number = document.querySelector('.one-number i');
+    let specialChar = document.querySelector('.one-special-char i');
+    let eightChar = document.querySelector('.eight-character i');
+
+
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("contrasenia");
+        var icon = document.querySelector(".show-pass i");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        }
+    }
+
+
+    passwor.addEventListener('keyup', function () {
+        let pass = passwor.value;
+        checkStrength(pass);
+    })
+
+    function checkStrength(password) {
+
+
+        let stregth = 0;
+
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+            stregth += 1;
+            lowerUperCase.classList.remove('fa-circle');
+            lowerUperCase.classList.add('fa-check');
+        }
+        else {
+            lowerUperCase.classList.add('fa-circle');
+            lowerUperCase.classList.remove('fa-check');
+        }
+
+        if (password.match(/([0-9])/)) {
+            stregth += 1;
+            number.classList.remove('fa-circle');
+            number.classList.add('fa-check');
+        }
+        else {
+            number.classList.add('fa-circle');
+            number.classList.remove('fa-check');
+        }
+        if (password.match(/[`!@@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)) {
+            stregth += 1;
+            specialChar.classList.remove('fa-circle');
+            specialChar.classList.add('fa-check');
+        }
+        else {
+            specialChar.classList.add('fa-circle');
+            specialChar.classList.remove('fa-check');
+        }
+        if (password.length > 7) {
+            stregth += 1;
+            eightChar.classList.remove('fa-circle');
+            eightChar.classList.add('fa-check');
+        }
+        else {
+            eightChar.classList.add('fa-circle');
+            eightChar.classList.remove('fa-check');
+        }
+
+        if (stregth == 0) {
+            passwordStrenght.style = 'with:0%';
+
+            $("#estado1").css("display", "none");
+            $("#estado2").css("display", "none");
+            $("#estado3").css("display", "none");
+            $("#estado4").css("display", "none");
+        } else if (stregth == 2) {
+            passwordStrenght.classList.remove('progress-bar-warning');
+            passwordStrenght.classList.remove('progress-bar-success');
+            passwordStrenght.classList.add('progress-bar-danger');
+            passwordStrenght.style = 'width:10%';
+
+            $("#estado1").css("display", "none");
+            $("#estado2").css("display", "block");
+            $("#estado3").css("display", "none");
+            $("#estado4").css("display", "none");
+        } else if (stregth == 3) {
+            passwordStrenght.classList.add('progress-bar-warning');
+            passwordStrenght.classList.remove('progress-bar-success');
+            passwordStrenght.classList.remove('progress-bar-danger');
+            passwordStrenght.style = 'width:60%';
+
+            $("#estado1").css("display", "none");
+            $("#estado2").css("display", "none");
+            $("#estado3").css("display", "block");
+            $("#estado4").css("display", "none");
+        }
+        else if (stregth == 4) {
+            passwordStrenght.classList.remove('progress-bar-warning');
+            passwordStrenght.classList.add('progress-bar-success');
+            passwordStrenght.classList.remove('progress-bar-danger');
+            passwordStrenght.style = 'width:100%';
+
+            $("#estado1").css("display", "none");
+            $("#estado2").css("display", "none");
+            $("#estado3").css("display", "none");
+            $("#estado4").css("display", "block");
+        }
+
+    }
+
+
+
+    function passecure() {
+        var result = false;
+
+        let password = passwor.value;
+        let stregth = 0;
+
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+            stregth += 1;
+            lowerUperCase.classList.remove('fa-circle');
+            lowerUperCase.classList.add('fa-check');
+        }
+        else {
+            lowerUperCase.classList.add('fa-circle');
+            lowerUperCase.classList.remove('fa-check');
+        }
+
+        if (password.match(/([0-9])/)) {
+            stregth += 1;
+            number.classList.remove('fa-circle');
+            number.classList.add('fa-check');
+        }
+        else {
+            number.classList.add('fa-circle');
+            number.classList.remove('fa-check');
+        }
+        if (password.match(/[`!@@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)) {
+            stregth += 1;
+            specialChar.classList.remove('fa-circle');
+            specialChar.classList.add('fa-check');
+        }
+        else {
+            specialChar.classList.add('fa-circle');
+            specialChar.classList.remove('fa-check');
+        }
+        if (password.length > 7) {
+            stregth += 1;
+            eightChar.classList.remove('fa-circle');
+            eightChar.classList.add('fa-check');
+        }
+        else {
+            eightChar.classList.add('fa-circle');
+            eightChar.classList.remove('fa-check');
+        }
+
+
+        if (stregth == 4) {
+            result = true;
+        }
+
+        return result;
+
+    }
+    $("#estado1").css("display", "block");
+    $("#estado2").css("display", "none");
+    $("#estado3").css("display", "none");
+    $("#estado4").css("display", "none");
+</script>
